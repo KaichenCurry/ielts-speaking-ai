@@ -1,0 +1,33 @@
+# ==========================================
+# 雅思口语 AI 助教系统 - Python 依赖
+# ==========================================
+# 安装方式：pip install -r requirements.txt
+
+# Telegram Bot
+python-telegram-bot==20.7
+
+# Notion API
+notion-client==2.2.1
+beautifulsoup4==4.12.3
+
+# AI 模型
+# Whisper（OpenAI 语音识别）
+openai-whisper==20231117
+
+# Hugging Face Transformers（用于 Whisper 模型加载）
+transformers==4.38.0
+torch==2.2.0
+
+# 数据处理
+numpy==1.26.4
+
+# HTTP 请求（内置 urllib 已足够，备选）
+requests==2.31.0
+
+# JSON 处理（内置 json 已足够）
+# 无需额外安装
+
+# ==========================================
+# 可选：向量数据库（未来升级 RAG 时使用）
+# ==========================================
+# pinecone-client==3.0.0  # 如果数据量超过 1000 条，考虑升级

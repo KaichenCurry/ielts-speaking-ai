@@ -54,10 +54,10 @@ class SessionState:
     part2_answer: Optional[AnswerRecord] = None
     part3_answers: List[AnswerRecord] = field(default_factory=list)
     
-    # 最终结果
-    part1_band: float = 0.0
-    part2_band: float = 0.0
-    part3_band: float = 0.0
+    # 最终结果（None表示未评分）
+    part1_band: Optional[float] = None
+    part2_band: Optional[float] = None
+    part3_band: Optional[float] = None
     overall_band: float = 0.0
     
     def get_current_part1_question(self) -> Optional[str]:
@@ -306,13 +306,22 @@ class AnswerFlow:
         if state.part3_answers:
             state.part3_band = sum(a.band for a in state.part3_answers) / len(state.part3_answers)
         
-        # 综合Band = Part2×40% + Part3×60%
-        if state.part2_band and state.part3_band:
-            state.overall_band = state.part2_band * 0.4 + state.part3_band * 0.6
+        # 综合Band = Part1×30% + (Part2×40% + Part3×60%)×70%
+        # 公式说明：
+        #   Part2_3 合成 = Part2×0.4 + Part3×0.6
+        #   Overall = Part1×0.3 + Part2_3×0.7
+        if state.part1_band is not None and state.part2_band and state.part3_band is not None:
+            p2_3_combined = state.part2_band * 0.4 + state.part3_band * 0.6
+            state.overall_band = state.part1_band * 0.3 + p2_3_combined * 0.7
+        elif state.part2_band and state.part3_band is not None:
+            p2_3_combined = state.part2_band * 0.4 + state.part3_band * 0.6
+            state.overall_band = p2_3_combined
         elif state.part2_band:
             state.overall_band = state.part2_band
-        elif state.part3_band:
+        elif state.part3_band is not None:
             state.overall_band = state.part3_band
+        elif state.part1_band is not None:
+            state.overall_band = state.part1_band
         
         return {
             "action": "done",
