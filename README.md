@@ -50,23 +50,23 @@ python3 scripts/ielts_flow.py process /path/to/audio.wav
 
 ```mermaid
 flowchart TD
-    subgraph 老师
+    subgraph 老师["👨‍🏫 老师"]
         A["发送 /题目 Test 07"]
     end
 
-    subgraph 学生
+    subgraph 学生["🎓 学生"]
         B["收到题目"]
         C["语音答题"]
         D["收到反馈"]
     end
 
-    subgraph AI系统
+    subgraph AI系统["🤖 AI 系统"]
         E["Whisper 转写"]
         F["RAG 检索"]
         G["MiniMax 评分"]
     end
 
-    subgraph 数据
+    subgraph 数据["📋 数据层"]
         H["Notion 存档"]
     end
 
@@ -137,6 +137,8 @@ flowchart TD
 
 ## 📖 真实案例
 
+> 截图 1：Telegram 机器人交互界面
+
 **学生回答**：
 > "reading has been my hobby since I was a child and I've been a catering story books for fun, but now I'm preparing for my studies abroad and shifted to reading academic articles... It's a total problem of horizons."
 
@@ -149,6 +151,14 @@ flowchart TD
 | "It's a total problem of horizons" | ❌ Chinglish | broadened my horizons |
 
 **Band Score**：6.0 / 9.0
+
+---
+
+> 截图 2：Notion 学生作业存档页面
+
+---
+
+> 截图 3：周五班级周报推送
 
 ---
 
@@ -202,24 +212,44 @@ ielts-speaking-ai/
 
 ## 🗺️ 未来路线图
 
+### 按时间线
+
 ```
-现在 (v1.0) ─────────────────────────────────────────────────────
+v1.0 (现在) ─────────────────────────────────────────────────────
+    ✅ Telegram Bot
+    ✅ Whisper 语音转写
+    ✅ MiniMax AI 评分
+    ✅ Notion 存档
+    ✅ 周报推送
 
-    └── 微信 / 飞书 / 企业微信 接入
-            │
-            ▼
-    v1.1 (2026 Q2) ───────────────────────────────────────────
+        ▼
+v1.1 (2026 Q2) ────────────────────────────────────────────────
+    📱 微信小程序接入
+    📱 飞书 Bot 接入
+    📱 企业微信接入
 
-            └── Hermes Agent / 多模型编排 / 向量 RAG
-                        │
-                        ▼
-                v1.2 (2026 Q3) ───────────────────────────────
+        ▼
+v1.2 (2026 Q3) ────────────────────────────────────────────────
+    🤖 Hermes Agent（下一代 AI Agent）
+    🔄 多模型编排
+    📚 向量检索升级 RAG
 
-                            └── 模型微调 / 学生进度面板
-                                    │
-                                    ▼
-                            v2.0 (2026 Q4) ────────────────
+        ▼
+v2.0 (2026 Q4) ────────────────────────────────────────────────
+    🔧 模型微调
+    👥 学生进度面板
+    📄 飞书文档集成
+    📄 腾讯文档集成
 ```
+
+### 按模块
+
+| 模块 | v1.0 | v1.1 | v1.2 | v2.0 |
+|------|------|------|------|------|
+| **平台接入** | Telegram | 微信/飞书/企微 | — | — |
+| **AI 能力** | 关键词 RAG + MiniMax | — | 向量 RAG + 多模型编排 | 微调模型 |
+| **数据体系** | Notion 存档 | — | 错题本 + 数据飞轮 | 学生成长面板 |
+| **用户场景** | 单老师 | 班级管理 | 多班级 | 机构版 |
 
 ---
 

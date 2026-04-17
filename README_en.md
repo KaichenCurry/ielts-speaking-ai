@@ -135,7 +135,9 @@ Every Friday 18:00 → Auto-push to Telegram:
 
 ---
 
-## 📖 Real Example
+## 📖 Real Examples
+
+> Screenshot 1: Telegram Bot interaction interface
 
 **Student Answer**:
 > "reading has been my hobby since I was a child and I've been a catering story books for fun, but now I'm preparing for my studies abroad and shifted to reading academic articles... It's a total problem of horizons."
@@ -149,6 +151,14 @@ Every Friday 18:00 → Auto-push to Telegram:
 | "It's a total problem of horizons" | ❌ Chinglish | broadened my horizons |
 
 **Band Score**: 6.0 / 9.0
+
+---
+
+> Screenshot 2: Notion student homework archive page
+
+---
+
+> Screenshot 3: Friday class weekly report
 
 ---
 
@@ -202,24 +212,44 @@ ielts-speaking-ai/
 
 ## 🗺️ Roadmap
 
+### By Timeline
+
 ```
-Now (v1.0) ─────────────────────────────────────────────────────
+v1.0 (Now) ─────────────────────────────────────────────────────
+    ✅ Telegram Bot
+    ✅ Whisper STT
+    ✅ MiniMax AI scoring
+    ✅ Notion archive
+    ✅ Weekly report
 
-    └── WeChat / Feishu / Enterprise WeChat
-            │
-            ▼
-    v1.1 (2026 Q2) ───────────────────────────────────────────
+        ▼
+v1.1 (2026 Q2) ────────────────────────────────────────────────
+    📱 WeChat Mini Program
+    📱 Feishu Bot
+    📱 Enterprise WeChat
 
-            └── Hermes Agent / Multi-agent / Vector RAG
-                        │
-                        ▼
-                v1.2 (2026 Q3) ───────────────────────────────
+        ▼
+v1.2 (2026 Q3) ────────────────────────────────────────────────
+    🤖 Hermes Agent
+    🔄 Multi-model orchestration
+    📚 Vector RAG
 
-                            └── Model fine-tuning / Student dashboard
-                                    │
-                                    ▼
-                            v2.0 (2026 Q4) ────────────────
+        ▼
+v2.0 (2026 Q4) ────────────────────────────────────────────────
+    🔧 Model fine-tuning
+    👥 Student dashboard
+    📄 Feishu Docs integration
+    📄 Tencent Docs integration
 ```
+
+### By Module
+
+| Module | v1.0 | v1.1 | v1.2 | v2.0 |
+|--------|------|------|------|------|
+| **Platform** | Telegram | WeChat/Feishu/Ent.WX | — | — |
+| **AI Capability** | Keyword RAG + MiniMax | — | Vector RAG + Multi-model | Fine-tuned model |
+| **Data System** | Notion archive | — | Error cases + Flywheel | Student growth panel |
+| **User Scenario** | Single teacher | Class management | Multiple classes | Institution tier |
 
 ---
 
