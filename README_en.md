@@ -47,38 +47,34 @@ An AI-powered assistant for **IELTS speaking teachers** — one command to assig
 
 ### Before vs After
 
+```mermaid
+flowchart LR
+    subgraph Before["BEFORE (Manual)"]
+        B1["📋 Receive 20 assignments"]
+        B2["⏱️ Manual grading → 3 hours"]
+        B3["😤 Student: When feedback?"]
+        B4["📝 Papers scattered, no data"]
+    end
+
+    B1 --> B2 --> B3 --> B4
+
+    style Before fill:#ffcccc,stroke:#ff6666
 ```
-┌─────────────────────────────────────────────────────────────────────┐
-│                        BEFORE (Manual)                              │
-├─────────────────────────────────────────────────────────────────────┤
-│                                                                      │
-│   📋 Teacher receives 20 assignments                                │
-│        ↓                                                             │
-│   ⏱️ Manual grading → 3 hours of repetitive work                    │
-│        ↓                                                             │
-│   😤 Student: "When will I get feedback?"                           │
-│        ↓                                                             │
-│   📝 Papers scattered → No data → No tracking                        │
-│                                                                      │
-└─────────────────────────────────────────────────────────────────────┘
-                              ↓
-                   🎯 ielts-speaking-ai ↓
-                              ↓
-┌─────────────────────────────────────────────────────────────────────┐
-│                        AFTER (AI-Powered)                            │
-├─────────────────────────────────────────────────────────────────────┤
-│                                                                      │
-│   👨‍🏫 Teacher → /题目 Test 07    ⌨️ One command                      │
-│        ↓                                                             │
-│   ✅ System sends Part 1/2/3 automatically                          │
-│        ↓                                                             │
-│   🎤 Student voice → 📊 AI grades → 💬 Sentence feedback           │
-│        ↓                                                             │
-│   📋 Notion archives + 📈 Friday auto report                         │
-│        ↓                                                             │
-│   👨‍🏫 Teacher focuses on teaching, not grading                       │
-│                                                                      │
-└─────────────────────────────────────────────────────────────────────┘
+
+```mermaid
+flowchart LR
+    subgraph After["AFTER (AI-Powered)"]
+        A1["👨‍🏫 Send /题目 Test 07"]
+        A2["✅ Auto send Part 1/2/3"]
+        A3["🎤 Student voice practice"]
+        A4["📊 AI instant grading → 💬 Feedback"]
+        A5["📋 Notion archive + 📈 Friday report"]
+        A6["👨‍🏫 Focus on teaching"]
+    end
+
+    A1 --> A2 --> A3 --> A4 --> A5 --> A6
+
+    style After fill:#ccffcc,stroke:#66cc66
 ```
 
 ---
@@ -90,43 +86,48 @@ An AI-powered assistant for **IELTS speaking teachers** — one command to assig
 ```mermaid
 flowchart TD
     subgraph Teacher["👨‍🏫 Teacher"]
-        A1["Send /题目 Test XX"]
-        A2["Check Notion"]
-        A3["Receive Friday report"]
+        T1["Send /题目 Test XX"]
+        T2["Check Notion"]
+        T3["Receive Friday report"]
     end
 
     subgraph System["🤖 System"]
-        B1["Telegram Bot"]
-        B2["Whisper STT"]
-        B3["RAG Retrieval"]
-        B4["MiniMax Scoring"]
-        B5["Band Calculation"]
+        S1["Telegram Bot"]
+        S2["Whisper STT"]
+        S3["RAG Retrieval"]
+        S4["MiniMax Scoring"]
+        S5["Band Calculation"]
     end
 
     subgraph Student["🎓 Student"]
-        C1["Receive questions"]
-        C2["Voice practice"]
-        C3["Get feedback"]
+        Sd1["Receive questions"]
+        Sd2["Voice practice"]
+        Sd3["Get feedback"]
     end
 
     subgraph Storage["📋 Notion"]
-        D1["Question Bank (66)"]
-        D2["Homework Archive"]
-        D3["Error Cases"]
+        DB1["Question Bank (66)"]
+        DB2["Homework Archive"]
+        DB3["Error Cases"]
     end
 
-    A1 --> B1
-    B1 --> C1
-    C2 --> B2
-    B2 --> B3
-    B3 --> B4
-    B4 --> B5
-    B5 --> C3
-    B5 --> D2
-    A2 --> D2
-    A2 --> D3
-    A3 --> D2
-    D2 -.-> D3
+    T1 --> S1
+    S1 --> Sd1
+    Sd2 --> S2
+    S2 --> S3
+    S3 --> S4
+    S4 --> S5
+    S5 --> Sd3
+    S5 --> DB2
+    T2 --> DB2
+    T2 --> DB3
+    T3 --> DB2
+    DB2 -.-> DB3
+
+    style Teacher fill:#e3f2fd,stroke:#2196f3
+    style System fill:#fff8e1,stroke:#ffc107
+    style Student fill:#f3e5f5,stroke:#9c27b0
+    style Storage fill:#e8f5e9,stroke:#4caf50
 ```
 
 ---
@@ -135,26 +136,47 @@ flowchart TD
 
 ### Why These Three?
 
-```
-┌─────────────────────────────────────────────────────────────────────┐
-│                                                                      │
-│   ┌─────────────┐     ┌─────────────┐     ┌─────────────┐          │
-│   │    📱       │     │    🤖       │     │    📋       │          │
-│   │  Telegram   │  +  │  OpenClaw   │  +  │   Notion    │          │
-│   │─────────────│     │─────────────│     │─────────────│          │
-│   │ 🌐 Messaging│     │ 🧠 AI Agent │     │ 📊 Storage  │          │
-│   │ 🎤 Voice    │     │ 🔄 Workflow │     │ 📝 Struct.  │          │
-│   │ 📱 Cross-pl │     │ 🌐 Chinese  │     │ 🔗 API     │          │
-│   └─────────────┘     └─────────────┘     └─────────────┘          │
-│                                                                      │
-└─────────────────────────────────────────────────────────────────────┘
-```
+```mermaid
+flowchart TD
+    subgraph Tech["Tech Stack"]
+        T1["📱 Telegram"]
+        T2["🤖 OpenClaw"]
+        T3["📋 Notion"]
+    end
 
-| Platform | Advantage | Why |
-|----------|-----------|-----|
-| **Telegram** | Native voice | Voice messages, no extra setup |
-| **OpenClaw** | AI Agent | Whisper + MiniMax + RAG built-in |
-| **Notion** | Structured data | Teacher-friendly, API-enabled |
+    subgraph Reason1["Why Telegram?"]
+        R1a["🎤 Native voice support"]
+        R1b["🌍 Multi-language"]
+        R1c["📱 Cross-platform"]
+    end
+
+    subgraph Reason2["Why OpenClaw?"]
+        R2a["🧠 AI Agent core"]
+        R2b["🔄 Workflow automation"]
+        R2c["🌐 Chinese understanding"]
+    end
+
+    subgraph Reason3["Why Notion?"]
+        R3a["📊 Structured database"]
+        R3b["📝 Teacher-friendly"]
+        R3c["🔗 API integration"]
+    end
+
+    T1 --> R1a
+    T1 --> R1b
+    T1 --> R1c
+    T2 --> R2a
+    T2 --> R2b
+    T2 --> R2c
+    T3 --> R3a
+    T3 --> R3b
+    T3 --> R3c
+
+    style Tech fill:#e1f5fe,stroke:#03a9f4
+    style Reason1 fill:#e3f2fd,stroke:#2196f3
+    style Reason2 fill:#fff8e1,stroke:#ffc107
+    style Reason3 fill:#e8f5e9,stroke:#4caf50
+```
 
 ### AI Pipeline
 
@@ -164,6 +186,10 @@ flowchart LR
     B -->|RAG| C["🧠 Context"]
     C -->|MiniMax| D["📊 Band Score"]
     D -->|Notion| E["💾 Archive"]
+
+    style A fill:#e1f5fe,stroke:#03a9f4
+    style D fill:#fff8e1,stroke:#ffc107
+    style E fill:#e8f5e9,stroke:#4caf50
 ```
 
 ---
@@ -178,14 +204,27 @@ Command: /题目 Test 07
 ✅ Part 2 sent (Cue Card)
 ✅ Part 3 sent (5 questions)
 ```
-66 real exam questions.
 
 ### 2️⃣ AI Auto-Scoring
+
+```mermaid
+flowchart LR
+    subgraph Pipeline["AI Pipeline"]
+        P1["🎤 Whisper"] --> P2["📝 Text"]
+        P2 --> P3["📚 RAG"]
+        P3 --> P4["🧠 MiniMax"]
+        P4 --> P5["📊 Band"]
+    end
+
+    style P1 fill:#e1f5fe
+    style P4 fill:#fff8e1
+    style P5 fill:#fff3e0
+```
 
 | Component | Technology | Function |
 |-----------|------------|----------|
 | 🎤 Speech-to-Text | Whisper | Voice → Text |
-| 📚 Context | RAG | Historical errors enhance |
+| 📚 Context | RAG | Historical errors |
 | 🧠 Scoring | MiniMax | 5-dimension evaluation |
 | 📊 Band Calc | Formula | Part1×30% + (Part2×40%+Part3×60%)×70% |
 
@@ -205,7 +244,19 @@ Command: /题目 Test 07
 
 ### 5️⃣ Weekly Reports
 
-Every Friday 18:00 → Auto-push to Telegram
+```mermaid
+flowchart TD
+    W1["⏰ Every Friday 18:00"] --> W2["📊 Generate report"]
+    W2 --> W3["📱 Push to Telegram"]
+    W3 --> W4["👨‍🏫 Teacher reads in 2 min"]
+
+    W4 --> W5["Sessions + Band distribution"]
+    W4 --> W6["Common errors TOP5"]
+    W4 --> W7["Next week suggestions"]
+
+    style W1 fill:#e1f5fe
+    style W3 fill:#e8f5e9
+```
 
 ---
 
@@ -222,6 +273,7 @@ Every Friday 18:00 → Auto-push to Telegram
 |----------|---------|-----------|-------|-------|-------|
 | "reading has been my hobby since I was a child" | ✅ | ✅ | ✅ | ✅ | ✅ |
 | "I've been a catering story books" | ✅ | ❌ `catering` → `reading` | ✅ | ✅ | ✅ |
+| "shifted to reading academic articles" | ✅ | ✅ | ✅ | ✅ | ✅ |
 | "It's a total problem of horizons" | ✅ | ❌ Chinglish → `broadened my horizons` | ✅ | ✅ | ✅ |
 
 **Result**: Band Score **6.0 / 9.0**
@@ -230,72 +282,102 @@ Every Friday 18:00 → Auto-push to Telegram
 
 ## 📁 Structure
 
-```
-┌─────────────────────────────────────────────────────────────────────┐
-│                       Project Structure                              │
-├─────────────────────────────────────────────────────────────────────┤
-│                                                                      │
-│  📄 README.md              ← Chinese version (default)               │
-│  📄 README_en.md           ← English version (this file)              │
-│  📄 LICENSE                ← MIT License                              │
-│  📄 .env.example           ← Environment template                   │
-│  📄 requirements.txt        ← Python dependencies                   │
-│                                                                      │
-│  ┌─────────────────────────────────────────────────────────────┐   │
-│  │  📁 scripts/                 Core Scripts                   │   │
-│  ├─────────────────────────────────────────────────────────────┤   │
-│  │  ⭐ ielts_flow.py           Main controller                │   │
-│  │  ⭐ answer_flow.py           State machine (Part1→2→3)   │   │
-│  │  ⭐ analyze_transcript.py   AI scoring                    │   │
-│  │  ⭐ rag_retrieve.py         RAG retrieval                  │   │
-│  │  📱 notion_*.py             Notion integration              │   │
-│  │  🔄 weekly_report.py         Weekly report                  │   │
-│  └─────────────────────────────────────────────────────────────┘   │
-│                                                                      │
-│  ┌─────────────────────────────────────────────────────────────┐   │
-│  │  📁 docs/                    Documentation                   │   │
-│  ├─────────────────────────────────────────────────────────────┤   │
-│  │  📋 SYSTEM_DESIGN.md        Technical docs                 │   │
-│  │  📋 PORTFOLIO_RESUME.md     Resume & Portfolio             │   │
-│  └─────────────────────────────────────────────────────────────┘   │
-│                                                                      │
-└─────────────────────────────────────────────────────────────────────┘
+```mermaid
+flowchart TD
+    subgraph Root["📁 ielts-speaking-ai"]
+        R1["📄 README.md"] 
+        R2["📄 README_en.md"]
+        R3["📄 LICENSE"]
+        R4["📄 .env.example"]
+        R5["📄 requirements.txt"]
+    end
+
+    subgraph Scripts["📁 scripts/"]
+        S1["⭐ ielts_flow.py"]
+        S2["⭐ answer_flow.py"]
+        S3["⭐ analyze_transcript.py"]
+        S4["⭐ rag_retrieve.py"]
+        S5["📱 notion_*.py"]
+        S6["🔄 weekly_report.py"]
+    end
+
+    subgraph Docs["📁 docs/"]
+        D1["📋 SYSTEM_DESIGN.md"]
+        D2["📋 PORTFOLIO_RESUME.md"]
+        D3["📋 INTERVIEW_PREP.md"]
+    end
+
+    subgraph Ref["📁 references/"]
+        Ref1["📝 prompts.md"]
+        Ref2["📝 prompt_changelog.md"]
+    end
+
+    Root --> Scripts
+    Root --> Docs
+    Root --> Ref
+
+    style Root fill:#e1f5fe,stroke:#03a9f4
+    style Scripts fill:#fff8e1,stroke:#ffc107
+    style Docs fill:#f3e5f5,stroke:#9c27b0
+    style Ref fill:#e8f5e9,stroke:#4caf50
 ```
 
 ---
 
 ## 🗺️ Roadmap
 
-### Current ✅ v1.0
+### Tech Evolution
+
+```mermaid
+flowchart LR
+    subgraph V1["v1.0 (Current)"]
+        V1A["📱 Telegram"]
+        V1B["🤖 OpenClaw<br/>(MiniMax)"]
+        V1C["📚 Keyword RAG"]
+        V1D["📋 Notion"]
+    end
+
+    subgraph V2["v1.2 (Q3)"]
+        V2A["📱 Telegram"]
+        V2B["🤖 OpenClaw<br/>(Multi-Agent)"]
+        V2C["📚 Vector RAG"]
+        V2D["📋 Notion"]
+    end
+
+    subgraph V3["v2.0 (Q4)"]
+        V3A["📱 Telegram"]
+        V3B["🤖 Hermes Agent"]
+        V3C["📚 Fine-tuned Model"]
+        V3D["📋 Feishu/Tencent Docs"]
+    end
+
+    V1 --> V2 --> V3
+
+    style V1 fill:#e8f5e9,stroke:#4caf50
+    style V2 fill:#fff8e1,stroke:#ffc107
+    style V3 fill:#e3f2fd,stroke:#03a9f4
+```
+
+### Version Timeline
 
 ```mermaid
 gantt
-    title Current Version v1.0 (Completed)
+    title Roadmap
     dateFormat  YYYY-MM
-    section v1.0
-    ✅ Telegram Bot          :2026-04-01, 2026-04-15
-    ✅ OpenClaw Agent       :2026-04-01, 2026-04-15
-    ✅ Notion Integration    :2026-04-01, 2026-04-15
-    ✅ Voice Practice        :2026-04-01, 2026-04-15
-    ✅ AI Auto-Scoring      :2026-04-01, 2026-04-15
-    ✅ Sentence Feedback    :2026-04-01, 2026-04-15
-    ✅ Weekly Reports       :2026-04-01, 2026-04-15
+    section v1.1
+    WeChat Mini Program       :2026-07, 2026-09
+    Feishu/Lark Bot         :2026-07, 2026-09
+    Enterprise WeChat         :2026-07, 2026-09
+    section v1.2
+    Hermes Agent             :2026-10, 2026-12
+    Multi-Agent              :2026-10, 2026-12
+    Vector RAG               :2026-10, 2026-12
+    section v2.0
+    Feishu Docs              :2027-01, 2027-03
+    Tencent Docs             :2027-01, 2027-03
+    Model Fine-tuning         :2027-01, 2027-03
+    Student Dashboard        :2027-01, 2027-03
 ```
-
-### Future 🔜
-
-| Version | Timeline | Features | Status |
-|---------|----------|----------|--------|
-| **v1.1** | 2026 Q2 | WeChat Mini Program | 🔜 |
-| | | Feishu/Lark Bot | 🔜 |
-| | | Enterprise WeChat | 🔜 |
-| **v1.2** | 2026 Q3 | Hermes Agent | 🔜 |
-| | | Multi-Agent | 🔜 |
-| | | Vector RAG | 🔜 |
-| **v2.0** | 2026 Q4 | Feishu Docs | 🔜 |
-| | | Tencent Docs | 🔜 |
-| | | Model Fine-tuning | 🔜 |
-| | | Student Dashboard | 🔜 |
 
 ---
 
@@ -334,6 +416,28 @@ python3 scripts/ielts_flow.py process /path/to/audio.wav
 |--------|--------|--------|
 | Band Error | ≤0.3 | **0.2** |
 | Format Accuracy | ≥98% | **98%+** |
+
+---
+
+## 🔄 Data Flywheel
+
+```mermaid
+flowchart LR
+    F1["🎓 Student practice"] --> F2["📊 AI scoring"]
+    F2 --> F3["👨‍🏫 Teacher correction"]
+    F3 --> F4["📚 Error cases"]
+    F4 --> F5["📚 RAG enhancement"]
+    F5 --> F2
+
+    F4 -.->|"100+ records"| F6["🔧 Fine-tuning"]
+    F6 --> F2
+
+    style F1 fill:#e1f5fe
+    style F2 fill:#fff8e1
+    style F3 fill:#f3e5f5
+    style F4 fill:#e8f5e9
+    style F5 fill:#e8f5e9
+```
 
 ---
 
