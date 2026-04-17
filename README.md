@@ -137,28 +137,39 @@ flowchart TD
 
 ## 📖 真实案例
 
-> 截图 1：Telegram 机器人交互界面
+### 截图 1：Telegram 答题界面
 
-**学生回答**：
-> "reading has been my hobby since I was a child and I've been a catering story books for fun, but now I'm preparing for my studies abroad and shifted to reading academic articles... It's a total problem of horizons."
+![Telegram Part 1 答题](./assets/telegram-part1-practice.png)
 
-**AI 反馈**：
-
-| 原句 | 诊断 | 建议 |
-|------|------|------|
-| "reading has been my hobby since I was a child" | ✅ 时态正确 | — |
-| "I've been a catering story books" | ❌ 词汇：`catering` → `reading` | reading story books |
-| "It's a total problem of horizons" | ❌ Chinglish | broadened my horizons |
-
-**Band Score**：6.0 / 9.0
+老师发送 `/题目 Test 05`，学生开始 Part 1 答题，系统实时记录语音回答。
 
 ---
 
-> 截图 2：Notion 学生作业存档页面
+### 截图 2：Telegram 评分报告
+
+![Telegram Part 3 + Band 评分](./assets/telegram-part3-band-report.png)
+
+学生完成 Part 3 后，AI 生成评分汇总：**Band 5.2**，成绩已存档 Notion。
 
 ---
 
-> 截图 3：周五班级周报推送
+### 截图 3：Notion 逐句反馈
+
+![Notion Part 2 逐句反馈](./assets/notion-part2-feedback.png)
+
+Notion 存档包含：题目、原文、逐句分析（Band 5.5）。
+
+---
+
+### 截图 4：详细评分总览
+
+![详细 Band 评分总览](./assets/detailed-band-overview.png)
+
+完整报告包含：
+- 逐句语法/词汇/逻辑纠错
+- Part 1/2/3 分项成绩
+- **综合 Band 6.0**
+- 下次突破点建议
 
 ---
 
@@ -187,6 +198,12 @@ ielts-speaking-ai/
 ├── LICENSE                      # MIT
 ├── requirements.txt             # Python 依赖
 ├── .env.example                # 环境变量模板
+│
+├── assets/                     # 截图资源
+│   ├── telegram-part1-practice.png
+│   ├── telegram-part3-band-report.png
+│   ├── notion-part2-feedback.png
+│   └── detailed-band-overview.png
 │
 ├── scripts/                     # 核心代码
 │   ├── ielts_flow.py          # 主控制器

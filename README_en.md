@@ -137,28 +137,39 @@ Every Friday 18:00 → Auto-push to Telegram:
 
 ## 📖 Real Examples
 
-> Screenshot 1: Telegram Bot interaction interface
+### Screenshot 1: Telegram Practice Interface
 
-**Student Answer**:
-> "reading has been my hobby since I was a child and I've been a catering story books for fun, but now I'm preparing for my studies abroad and shifted to reading academic articles... It's a total problem of horizons."
+![Telegram Part 1 Practice](./assets/telegram-part1-practice.png)
 
-**AI Feedback**:
-
-| Original | Diagnosis | Suggestion |
-|----------|-----------|------------|
-| "reading has been my hobby since I was a child" | ✅ Tense correct | — |
-| "I've been a catering story books" | ❌ Vocabulary: `catering` → `reading` | reading story books |
-| "It's a total problem of horizons" | ❌ Chinglish | broadened my horizons |
-
-**Band Score**: 6.0 / 9.0
+Teacher sends `/题目 Test 05`, student starts Part 1, system records voice answers in real-time.
 
 ---
 
-> Screenshot 2: Notion student homework archive page
+### Screenshot 2: Telegram Band Report
+
+![Telegram Part 3 + Band Report](./assets/telegram-part3-band-report.png)
+
+After Part 3, AI generates grading summary: **Band 5.2**, archived to Notion.
 
 ---
 
-> Screenshot 3: Friday class weekly report
+### Screenshot 3: Notion Sentence Feedback
+
+![Notion Part 2 Feedback](./assets/notion-part2-feedback.png)
+
+Notion archive contains: Topic, Original transcript, Sentence-by-sentence analysis (Band 5.5).
+
+---
+
+### Screenshot 4: Detailed Band Overview
+
+![Detailed Band Overview](./assets/detailed-band-overview.png)
+
+Complete report includes:
+- Sentence-by-sentence grammar/vocabulary/logic corrections
+- Part 1/2/3 individual scores
+- **Overall Band 6.0**
+- Improvement suggestions
 
 ---
 
@@ -187,6 +198,12 @@ ielts-speaking-ai/
 ├── LICENSE                      # MIT
 ├── requirements.txt             # Python dependencies
 ├── .env.example                # Environment template
+│
+├── assets/                     # Screenshots
+│   ├── telegram-part1-practice.png
+│   ├── telegram-part3-band-report.png
+│   ├── notion-part2-feedback.png
+│   └── detailed-band-overview.png
 │
 ├── scripts/                     # Core code
 │   ├── ielts_flow.py          # Main controller
