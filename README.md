@@ -1,101 +1,111 @@
 # 🎓 ielts-speaking-ai
-# 雅思口语 AI 助教系统
 
-> 帮老师自动评分，让老师专注教学。
+<div align="center">
 
 [![Stars](https://img.shields.io/github/stars/KaichenCurry/ielts-speaking-ai?style=flat-square)](https://github.com/KaichenCurry/ielts-speaking-ai/stargazers)
 [![License](https://img.shields.io/badge/License-MIT-green?style=flat-square)](LICENSE)
 [![Python](https://img.shields.io/badge/Python-3.8+-blue?style=flat-square)](https://www.python.org/)
 [![Last Commit](https://img.shields.io/github/last-commit/KaichenCurry/ielts-speaking-ai?style=flat-square)](https://github.com/KaichenCurry/ielts-speaking-ai/commits)
 
-🌐 **语言**: 🇨🇳 **中文** | [🇺🇸 English](README_en.md)
+**雅思口语 AI 助教系统 — 帮老师自动评分，让学生即时收到反馈**
+
+[English](./README_en.md) · [项目文档](./docs/SYSTEM_DESIGN.md) · [简历内容](./docs/PORTFOLIO_RESUME.md)
+
+</div>
 
 ---
 
-## 是什么
+## 🎯 是什么
 
-帮**雅思口语老师**自动评分的 AI 工具。
+面向**雅思口语教师**的 AI 助教系统。
 
-老师发一条指令，学生在家语音答题，系统自动评分、逐句反馈、存档 Notion、推送周报。
+老师发一条指令 → 学生在家语音答题 → AI 自动评分 + 逐句反馈 → 结果自动存档 Notion → 周五推送班级周报。
+
+**一句话：把老师从重复性评分工作中解放出来。**
 
 ---
 
-## 核心流程
+## ⚡ 快速开始
+
+```bash
+# 1. 克隆项目
+git clone https://github.com/KaichenCurry/ielts-speaking-ai.git
+cd ielts-speaking-ai
+
+# 2. 安装依赖
+pip install -r requirements.txt
+
+# 3. 配置环境变量
+cp .env.example .env
+# 编辑 .env，填入 Token
+
+# 4. 运行
+python3 scripts/ielts_flow.py init '{"test_number": 7}'
+python3 scripts/ielts_flow.py process /path/to/audio.wav
+```
+
+---
+
+## 🔄 工作流程
 
 ```mermaid
 flowchart TD
     subgraph 老师
-        A["发指令 /题目 Test 07"]
+        A["发送 /题目 Test 07"]
     end
 
     subgraph 学生
         B["收到题目"]
         C["语音答题"]
-        D["收到逐句反馈"]
+        D["收到反馈"]
     end
 
     subgraph AI系统
         E["Whisper 转写"]
-        F["RAG 检索历史错题"]
-        G["MiniMax 5维度评分"]
-        H["Band Score 计算"]
+        F["RAG 检索"]
+        G["MiniMax 评分"]
     end
 
-    subgraph 数据层
-        I["Notion 存档"]
-        J["错题本"]
+    subgraph 数据
+        H["Notion 存档"]
     end
 
-    A -->|"一条指令"| B
-    C -->|"语音"| E
-    E --> F --> G --> H
-    H -->|"逐句反馈"| D
-    H --> I
-    I -.-> J
+    A --> B
+    C --> E --> F --> G
+    G --> D
+    G --> H
 
     style 老师 fill:#e3f2fd
     style 学生 fill:#f3e5f5
     style AI系统 fill:#fff8e1
-    style 数据层 fill:#e8f5e9
+    style 数据 fill:#e8f5e9
 ```
 
 ---
 
-## 解决了什么问题
+## ✨ 核心功能
 
-| 之前（老师） | 之后（AI） |
-|-------------|-------------|
-| 手动评分，每份 3 小时 | AI 自动评分，0 秒 |
-| 学生等一天才收到反馈 | 答题结束立即收到 |
-| 数据散落在微信/邮件 | 自动存档到 Notion |
-| 手动统计班级进度 | 每周五自动推送周报 |
+### 📝 一键布置作业
 
----
+老师发送一条指令，系统自动发送 Part 1/2/3 全部题目：
 
-## 效果数据
-
-| 指标 | 数值 |
-|------|------|
-| 老师效率提升 | **80%+** |
-| Band 评分误差 | **0.2** |
-| 格式正确率 | **98%+** |
-
-> 基于 2026-04 运营数据（20+ 次练习）
-
----
-
-## 5 大功能
-
-### 1️⃣ 一键布置作业
-老师发送 `/题目 Test 07`，系统自动发送 Part 1/2/3 全部题目，66 套真题库随时调用。
-
-### 2️⃣ AI 自动评分
 ```
-学生语音 → Whisper 转写 → RAG 检索历史错题 → MiniMax 评分
-```
-MiniMax 输出 5 维度逐句反馈：语法 / 词汇 / 时态 / 逻辑 / 思路
+/题目 Test 07
 
-### 3️⃣ 即时逐句反馈
+✅ Part 1 已发送（5题）
+✅ Part 2 已发送（Cue Card）
+✅ Part 3 已发送（5题）
+```
+
+### 🤖 AI 自动评分
+
+| 环节 | 技术 | 说明 |
+|------|------|------|
+| 语音转文字 | Whisper | OpenAI 开源，口语场景最准 |
+| 上下文增强 | RAG | 检索历史错题，让评分更有针对性 |
+| AI 评分 | MiniMax | 5 维度逐句反馈 |
+
+### 📊 5 维度逐句反馈
 
 | 维度 | 关注点 | 示例 |
 |------|--------|------|
@@ -105,7 +115,7 @@ MiniMax 输出 5 维度逐句反馈：语法 / 词汇 / 时态 / 逻辑 / 思路
 | 逻辑 | 因果、转折 | 观点与举例不匹配 |
 | 思路 | 举例、深度 | 举例泛泛而谈 |
 
-### 4️⃣ Notion 自动存档
+### 💾 Notion 自动存档
 
 每个学生的练习记录永久留存：
 - 答题原文
@@ -113,143 +123,121 @@ MiniMax 输出 5 维度逐句反馈：语法 / 词汇 / 时态 / 逻辑 / 思路
 - 逐句反馈
 - 老师纠正记录
 
-📎 [题库](https://www.notion.so/bba82871-4fe1-4409-9f70-72f6bf27e7b3) | 📎 [作业库](https://www.notion.so/3412e55d-7136-8179-9ac8-ee60a420ac21) | 📎 [错题本](https://www.notion.so/3412e55d-7136-8113-aa98-cfd36af9799c)
+📎 [题库](https://www.notion.so/bba82871-4fe1-4409-9f70-72f6bf27e7b3) · 📎 [作业库](https://www.notion.so/3412e55d-7136-8179-9ac8-ee60a420ac21) · 📎 [错题本](https://www.notion.so/3412e55d-7136-8113-aa98-cfd36af9799c)
 
-### 5️⃣ 周报自动推送
+### 📈 周报自动推送
 
-每周五 18:00 自动推送到 Telegram 群：
-
-```
-📊 班级周报
-
-练习人次：12 | 平均 Band：6.2 | 较上周 +0.3
-
-Band 分布：7.0+（3人）6.0-6.5（6人）5.5-6.0（2人）
-
-常见错误 TOP3：
-1. 时态混用 —— 8次
-2. 主谓不一致 —— 6次
-3. 举例不匹配 —— 5次
-```
+每周五 18:00 自动推送到 Telegram 群，包含：
+- 练习人次、平均 Band
+- Band 分布
+- 常见错误 TOP5
+- 下周教学建议
 
 ---
 
-## 真实案例
+## 📖 真实案例
 
 **学生回答**：
-> "Definitely, yes, reading has been my hobby since I was a child and I've been a catering story books for fun, but now I'm preparing for my studies abroad and shifted to reading academic articles and biographies of influential figures. It's a total problem of horizons and improve my vocabulary."
+> "reading has been my hobby since I was a child and I've been a catering story books for fun, but now I'm preparing for my studies abroad and shifted to reading academic articles... It's a total problem of horizons."
 
-**AI 逐句反馈**：
+**AI 反馈**：
 
 | 原句 | 诊断 | 建议 |
 |------|------|------|
 | "reading has been my hobby since I was a child" | ✅ 时态正确 | — |
-| "I've been a catering story books for fun" | ❌ 词汇：`catering` → `reading` | → reading story books for fun |
-| "shifted to reading academic articles" | ✅ 词汇准确 | — |
-| "It's a total problem of horizons" | ❌ Chinglish | → It's really broadened my horizons |
+| "I've been a catering story books" | ❌ 词汇：`catering` → `reading` | reading story books |
+| "It's a total problem of horizons" | ❌ Chinglish | broadened my horizons |
 
 **Band Score**：6.0 / 9.0
 
 ---
 
-## 技术选型
+## 🛠️ 技术栈
 
 | 环节 | 技术 | 为什么选它 |
 |------|------|---------|
-| 消息入口 | Telegram | 原生支持语音，学生用起来无门槛 |
-| AI 推理 | MiniMax（通过 OpenClaw） | 中文理解强，成本低 |
-| 语音转文字 | Whisper（OpenAI） | 口语场景最准，开源可本地运行 |
+| 消息入口 | Telegram | 原生支持语音，跨平台，学生无门槛 |
+| AI 推理 | MiniMax（OpenClaw） | 中文理解强，成本低 |
+| 语音转文字 | Whisper | 口语场景 SOTA，开源可本地运行 |
 | 数据存储 | Notion | 老师直接用，无需自建后台 |
 
----
-
-## Band Score 计算公式
-
+**Band 公式**：
 ```
 综合 Band = Part1×30% + (Part2×40% + Part3×60%)×70%
 ```
 
-**计算示例**：
-```
-Part1 均分：6.0
-Part2 得分：6.5
-Part3 均分：6.0
-
-Part2_3 合成 = 6.5×0.4 + 6.0×0.6 = 6.2
-综合 Band = 6.0×0.3 + 6.2×0.7 = 6.14 ≈ 6.0
-```
-
 ---
 
-## 项目结构
+## 📁 项目结构
 
 ```
 ielts-speaking-ai/
-├── scripts/                    # 核心代码
-│   ├── ielts_flow.py         # 主控制器
-│   ├── answer_flow.py         # 状态机（Part1→2→3）
-│   ├── analyze_transcript.py # AI 评分
-│   ├── rag_retrieve.py       # RAG 检索
-│   └── notion_append_*.py    # Notion 存档
+├── README.md                     # 本文件
+├── README_en.md                 # English version
+├── LICENSE                      # MIT
+├── requirements.txt             # Python 依赖
+├── .env.example                # 环境变量模板
 │
-├── docs/
-│   ├── SYSTEM_DESIGN.md      # 详细技术文档
-│   ├── PORTFOLIO_RESUME.md   # 简历内容
-│   └── INTERVIEW_PREP.md    # 面试准备
+├── scripts/                     # 核心代码
+│   ├── ielts_flow.py          # 主控制器
+│   ├── answer_flow.py          # 状态机（Part1→2→3）
+│   ├── analyze_transcript.py  # AI 评分
+│   ├── rag_retrieve.py        # RAG 检索
+│   ├── notion_append_homework.py
+│   ├── notion_append_badcase.py
+│   ├── notion_search.py
+│   └── weekly_report.py
 │
-└── references/
-    └── prompts.md            # Prompt 模板
+├── docs/                       # 文档
+│   ├── SYSTEM_DESIGN.md       # 详细技术文档
+│   ├── PORTFOLIO_RESUME.md    # 简历内容
+│   └── INTERVIEW_PREP.md      # 面试准备
+│
+└── references/                # 参考资料
+    ├── prompts.md
+    └── prompt_changelog.md
 ```
 
 ---
 
-## 快速开始
-
-```bash
-# 1. 克隆
-git clone https://github.com/KaichenCurry/ielts-speaking-ai.git
-cd ielts-speaking-ai
-
-# 2. 安装依赖
-pip install -r requirements.txt
-
-# 3. 配置环境变量
-cp .env.example .env
-# 编辑 .env 填入 Token
-
-# 4. 运行
-python3 scripts/ielts_flow.py init '{"test_number": 7}'
-python3 scripts/ielts_flow.py process /path/to/audio.wav
-```
-
----
-
-## 未来路线图
+## 🗺️ 未来路线图
 
 ```
-现在 (v1.0) ─────────────────────────────────────────────────────────
+现在 (v1.0) ─────────────────────────────────────────────────────
 
-    └── 微信/飞书/企业微信接入
+    └── 微信 / 飞书 / 企业微信 接入
             │
             ▼
-    v1.1 (2026 Q2) ───────────────────────────────────────────────
+    v1.1 (2026 Q2) ───────────────────────────────────────────
 
             └── Hermes Agent / 多模型编排 / 向量 RAG
                         │
                         ▼
-                v1.2 (2026 Q3) ────────────────────────────────────
+                v1.2 (2026 Q3) ───────────────────────────────
 
-                            └── 模型微调 / 学生进度面板 / 飞书文档
+                            └── 模型微调 / 学生进度面板
                                     │
                                     ▼
-                            v2.0 (2026 Q4) ──────────────────────
+                            v2.0 (2026 Q4) ────────────────
 ```
 
 ---
 
-## 链接
+## 📊 效果数据
 
-| 资源 | 链接 |
+| 指标 | 目标 | 实际 |
+|------|------|------|
+| 老师效率提升 | 80%+ | ✅ |
+| Band 评分误差 | ≤0.3 | **0.2** |
+| 格式正确率 | ≥98% | **98%+** |
+
+> 基于 2026-04 运营数据（20+ 次练习）
+
+---
+
+## 🔗 链接
+
+| 资源 | 地址 |
 |------|------|
 | GitHub | https://github.com/KaichenCurry/ielts-speaking-ai |
 | 题库 | https://www.notion.so/bba82871-4fe1-4409-9f70-72f6bf27e7b3 |
@@ -258,6 +246,10 @@ python3 scripts/ielts_flow.py process /path/to/audio.wav
 
 ---
 
-**Curry Chen** | [GitHub](https://github.com/KaichenCurry)
+<div align="center">
 
-<p align="center"><strong>⭐ Star 这个项目！</strong></p>
+**给个 ⭐ 支持一下！**
+
+*Made by [Curry Chen](https://github.com/KaichenCurry)*
+
+</div>
