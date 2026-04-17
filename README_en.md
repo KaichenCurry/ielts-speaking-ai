@@ -1,7 +1,7 @@
 # 🎓 ielts-speaking-ai
-# 雅思口语 AI 助教系统
+# IELTS Speaking AI Assistant
 
-> 让老师专注于教学，从重复性评分工作中解放。
+> Free teachers from repetitive grading, let them focus on real teaching.
 
 [![Stars](https://img.shields.io/github/stars/KaichenCurry/ielts-speaking-ai?style=flat-square)](https://github.com/KaichenCurry/ielts-speaking-ai/stargazers)
 [![License](https://img.shields.io/badge/License-MIT-green?style=flat-square)](LICENSE)
@@ -20,134 +20,151 @@
 - [🏗️ Tech Stack](#️-tech-stack)
 - [✨ Features](#-features)
 - [📖 Demo](#-demo)
-- [🚀 Quick Start](#-quick-start)
-- [📁 Project Structure](#-project-structure)
+- [📁 Structure](#-structure)
 - [🗺️ Roadmap](#️-roadmap)
-- [👤 Author](#-author)
+- [🚀 Quick Start](#-quick-start)
 
 ---
 
 ## 🎯 What is this?
 
-An **AI-powered IELTS speaking practice & evaluation system** designed for IELTS speaking teachers.
+### One-sentence
 
-```
-Teacher types:  /题目 Test 07
-        ↓
-System sends Part 1/2/3 questions
-        ↓
-Student records voice answers at home
-        ↓
-AI auto-scores → Instant sentence-by-sentence feedback
-        ↓
-Data archived to Notion + Weekly report every Friday
-```
+An AI-powered assistant for **IELTS speaking teachers** — one command to assign homework, students practice with voice, system auto-grades, provides sentence-by-sentence feedback, archives to Notion, and pushes weekly reports.
 
-**Target User: IELTS Speaking Teachers**
+### What Problem It Solves
+
+| User | Problem | Solution |
+|------|---------|----------|
+| Teachers | Repetitive grading | AI auto-grades, 80%+ time saved |
+| Teachers | Delayed feedback | Instant feedback after practice |
+| Teachers | Scattered data | Notion archives, searchable |
+| Teachers | No class overview | Auto Friday weekly reports |
 
 ---
 
 ## 😤 The Problem
 
-| Pain Point | Reality | Impact |
-|-----------|---------|--------|
-| 🔴 Repetitive grading | Manually scoring every homework | Hours spent on grading, not teaching |
-| 🔴 Delayed feedback | Students wait a day for results | Miss the optimal learning window |
-| 🔴 Scattered data | Student progress hard to track | Can't build systematic archives |
-| 🔴 No class overview | Manual statistics are time-consuming | Difficult to adjust teaching strategies |
+### Before vs After
+
+```
+┌─────────────────────────────────────────────────────────────────────┐
+│                        BEFORE (Manual)                              │
+├─────────────────────────────────────────────────────────────────────┤
+│                                                                      │
+│   📋 Teacher receives 20 assignments                                │
+│        ↓                                                             │
+│   ⏱️ Manual grading → 3 hours of repetitive work                    │
+│        ↓                                                             │
+│   😤 Student: "When will I get feedback?"                           │
+│        ↓                                                             │
+│   📝 Papers scattered → No data → No tracking                        │
+│                                                                      │
+└─────────────────────────────────────────────────────────────────────┘
+                              ↓
+                   🎯 ielts-speaking-ai ↓
+                              ↓
+┌─────────────────────────────────────────────────────────────────────┐
+│                        AFTER (AI-Powered)                            │
+├─────────────────────────────────────────────────────────────────────┤
+│                                                                      │
+│   👨‍🏫 Teacher → /题目 Test 07    ⌨️ One command                      │
+│        ↓                                                             │
+│   ✅ System sends Part 1/2/3 automatically                          │
+│        ↓                                                             │
+│   🎤 Student voice → 📊 AI grades → 💬 Sentence feedback           │
+│        ↓                                                             │
+│   📋 Notion archives + 📈 Friday auto report                         │
+│        ↓                                                             │
+│   👨‍🏫 Teacher focuses on teaching, not grading                       │
+│                                                                      │
+└─────────────────────────────────────────────────────────────────────┘
+```
 
 ---
 
 ## 💡 Our Solution
 
-### Before vs After
+### Complete Workflow
 
-```
-┌─────────────────────────────────────────────────────────────────┐
-│                        BEFORE (Manual)                          │
-├─────────────────────────────────────────────────────────────────┤
-│                                                                  │
-│  Teacher: "Grade 20 homeworks"                                  │
-│       ↓                                                          │
-│  ⏱️ 3 hours of repetitive scoring                               │
-│       ↓                                                          │
-│  Student: "When will I get feedback?"                            │
-│       ↓                                                          │
-│  📝 Paper scattered, no data, no tracking                        │
-│                                                                  │
-└─────────────────────────────────────────────────────────────────┘
+```mermaid
+flowchart TD
+    subgraph Teacher["👨‍🏫 Teacher"]
+        A1["Send /题目 Test XX"]
+        A2["Check Notion"]
+        A3["Receive Friday report"]
+    end
 
-                              ↓ ielts-speaking-ai ↓
+    subgraph System["🤖 System"]
+        B1["Telegram Bot"]
+        B2["Whisper STT"]
+        B3["RAG Retrieval"]
+        B4["MiniMax Scoring"]
+        B5["Band Calculation"]
+    end
 
-┌─────────────────────────────────────────────────────────────────┐
-│                        AFTER (AI-Powered)                       │
-├─────────────────────────────────────────────────────────────────┤
-│                                                                  │
-│  Teacher: "/题目 Test 07"  ← one command                      │
-│       ↓                                                          │
-│  ✅ System sends questions automatically                         │
-│       ↓                                                          │
-│  Student: records voice → gets instant feedback                 │
-│       ↓                                                          │
-│  📊 Notion archived + Friday weekly report                      │
-│       ↓                                                          │
-│  Teacher: Focus on real teaching intervention                   │
-│                                                                  │
-└─────────────────────────────────────────────────────────────────┘
+    subgraph Student["🎓 Student"]
+        C1["Receive questions"]
+        C2["Voice practice"]
+        C3["Get feedback"]
+    end
+
+    subgraph Storage["📋 Notion"]
+        D1["Question Bank (66)"]
+        D2["Homework Archive"]
+        D3["Error Cases"]
+    end
+
+    A1 --> B1
+    B1 --> C1
+    C2 --> B2
+    B2 --> B3
+    B3 --> B4
+    B4 --> B5
+    B5 --> C3
+    B5 --> D2
+    A2 --> D2
+    A2 --> D3
+    A3 --> D2
+    D2 -.-> D3
 ```
 
 ---
 
 ## 🏗️ Tech Stack
 
-> **Why these three? Together they form the perfect AI teaching assistant.**
+### Why These Three?
 
 ```
-┌─────────────────────────────────────────────────────────────────┐
-│                                                                  │
-│   📱 Telegram          +   🤖 OpenClaw          +   📋 Notion  │
-│   ──────────────           ─────────────           ───────────  │
-│                                                                  │
-│   🌐 Instant Message      🧠 AI Agent Core      📊 Data Storage  │
-│   Native voice support   Multi-model fusion    Structured docs  │
-│   Multi-platform        Native Chinese         Scalable archive  │
-│   Low barrier           Mature platform        Teacher-friendly  │
-│                                                                  │
-│   ┌─────────────────────────────────────────────────────────┐   │
-│   │  🎤 Voice → 📝 Whisper → 🧠 MiniMax → 📊 Band Score  │   │
-│   │              ↑ OpenClaw Agent orchestration ↑           │   │
-│   └─────────────────────────────────────────────────────────┘   │
-│                                                                  │
-└─────────────────────────────────────────────────────────────────┘
+┌─────────────────────────────────────────────────────────────────────┐
+│                                                                      │
+│   ┌─────────────┐     ┌─────────────┐     ┌─────────────┐          │
+│   │    📱       │     │    🤖       │     │    📋       │          │
+│   │  Telegram   │  +  │  OpenClaw   │  +  │   Notion    │          │
+│   │─────────────│     │─────────────│     │─────────────│          │
+│   │ 🌐 Messaging│     │ 🧠 AI Agent │     │ 📊 Storage  │          │
+│   │ 🎤 Voice    │     │ 🔄 Workflow │     │ 📝 Struct.  │          │
+│   │ 📱 Cross-pl │     │ 🌐 Chinese  │     │ 🔗 API     │          │
+│   └─────────────┘     └─────────────┘     └─────────────┘          │
+│                                                                      │
+└─────────────────────────────────────────────────────────────────────┘
 ```
 
-### Why Telegram?
+| Platform | Advantage | Why |
+|----------|-----------|-----|
+| **Telegram** | Native voice | Voice messages, no extra setup |
+| **OpenClaw** | AI Agent | Whisper + MiniMax + RAG built-in |
+| **Notion** | Structured data | Teacher-friendly, API-enabled |
 
-| Advantage | Explanation |
-|-----------|-------------|
-| 🌐 Native voice support | Telegram supports voice messages natively, perfect for speaking practice |
-| 🌍 Multi-language | Built-in translation, great for international students |
-| 📱 Cross-platform | iOS/Android/Desktop, students can practice anywhere |
-| 🔔 Instant notifications | Students get questions immediately |
-| 📊 Group features | Built-in group reports, weekly summaries |
+### AI Pipeline
 
-### Why OpenClaw?
-
-| Advantage | Explanation |
-|-----------|-------------|
-| 🧠 Mature AI Agent | Native Whisper + MiniMax + RAG integration |
-| 🔄 Workflow automation | State machine for Part 1→2→3 flow |
-| 🌐 Chinese-native | Excellent Chinese context understanding |
-| 💰 Cost-effective | Compared to GPT-4, better for education scenarios |
-
-### Why Notion?
-
-| Advantage | Explanation |
-|-----------|-------------|
-| 📊 Structured data | Question bank, homework archive, error cases |
-| 📝 Teacher-friendly | No-code database, easy for non-tech teachers |
-| 🔗 API integration | Auto-archive homework, searchable |
-| 📈 Progress tracking | Student growth over time |
+```mermaid
+flowchart LR
+    A["🎤 Voice"] -->|Whisper| B["📝 Text"]
+    B -->|RAG| C["🧠 Context"]
+    C -->|MiniMax| D["📊 Band Score"]
+    D -->|Notion| E["💾 Archive"]
+```
 
 ---
 
@@ -155,61 +172,40 @@ Data archived to Notion + Weekly report every Friday
 
 ### 1️⃣ One-Click Assignment
 ```
-/题目 Test 07
+Command: /题目 Test 07
 
 ✅ Part 1 sent (5 questions)
 ✅ Part 2 sent (Cue Card)
 ✅ Part 3 sent (5 questions)
 ```
-66 real exam questions, ready to use.
+66 real exam questions.
 
 ### 2️⃣ AI Auto-Scoring
 
 | Component | Technology | Function |
 |-----------|------------|----------|
-| 🎤 Speech-to-Text | **Whisper** (OpenAI) | Voice → Text |
-| 📚 Context | **RAG** | Historical errors enhance scoring |
-| 🧠 Scoring | **MiniMax** (via OpenClaw) | 5-dimension evaluation |
-| 📊 Band Calc | **Formula** | Part1×30% + (Part2×40%+Part3×60%)×70% |
+| 🎤 Speech-to-Text | Whisper | Voice → Text |
+| 📚 Context | RAG | Historical errors enhance |
+| 🧠 Scoring | MiniMax | 5-dimension evaluation |
+| 📊 Band Calc | Formula | Part1×30% + (Part2×40%+Part3×60%)×70% |
 
 ### 3️⃣ 5-Dimension Feedback
 
-| Dimension | Focus | Example Issue |
-|-----------|-------|--------------|
+| Dimension | Focus | Example |
+|-----------|-------|---------|
 | 📝 Grammar | Subject-verb, clauses | "He go" → "He goes" |
 | 📖 Vocabulary | Chinglish, synonyms | "很贵" → "expensive" |
-| ⏰ Tense | Past/present/perfect | Past events in present tense |
-| 🔗 Logic | Causality, transitions |观点与举例不匹配 |
-| 💡 Ideas | Examples, depth | 举例泛泛而谈 |
+| ⏰ Tense | Past/present/perfect | Past events in present |
+| 🔗 Logic | Causality, transitions | Example doesn't match point |
+| 💡 Ideas | Examples, depth | Examples too general |
 
 ### 4️⃣ Notion Integration
 
-📎 **Databases**:
-- [Question Bank](https://www.notion.so/bba82871-4fe1-4409-9f70-72f6bf27e7b3) - 66 exam sets
-- [Homework Archive](https://www.notion.so/3412e55d-7136-8179-9ac8-ee60a420ac21) - Practice records
-- [Error Cases](https://www.notion.so/3412e55d-7136-8113-aa98-cfd36af9799c) - Historical mistakes
+📎 [Question Bank](https://www.notion.so/bba82871-4fe1-4409-9f70-72f6bf27e7b3) | 📎 [Homework Archive](https://www.notion.so/3412e55d-7136-8179-9ac8-ee60a420ac21) | 📎 [Error Cases](https://www.notion.so/3412e55d-7136-8113-aa98-cfd36af9799c)
 
 ### 5️⃣ Weekly Reports
 
 Every Friday 18:00 → Auto-push to Telegram
-
-```
-📊 Weekly Report | Apr 11-15
-
-【Practice Overview】
-• Sessions: 12
-• Average Band: 6.2
-• Change: +0.3 ↑
-
-【Band Distribution】
-• 7.0+: 3 students ████
-• 6.0-6.5: 6 students ████████████
-• 5.5-6.0: 2 students ████
-
-【Common Errors TOP 5】
-1. Tense mixing — 8 times
-2. Subject-verb — 6 times
-```
 
 ---
 
@@ -217,193 +213,139 @@ Every Friday 18:00 → Auto-push to Telegram
 
 ### Student Answer → AI Feedback
 
-**Original transcript**:
-> "Definitely, yes, reading has been my hobby since I was a child and I've been a catering story books for fun, but now I'm preparing for my studies abroad and shifted to reading academic articles..."
+**Transcript**:
+> "Definitely, yes, reading has been my hobby since I was a child and I've been a catering story books for fun..."
 
-**AI Sentence-by-Sentence Feedback**:
+**AI Feedback**:
 
 | Sentence | Grammar | Vocabulary | Tense | Logic | Ideas |
-|----------|---------|------------|-------|-------|-------|
+|----------|---------|-----------|-------|-------|-------|
 | "reading has been my hobby since I was a child" | ✅ | ✅ | ✅ | ✅ | ✅ |
 | "I've been a catering story books" | ✅ | ❌ `catering` → `reading` | ✅ | ✅ | ✅ |
-| "shifted to reading academic articles" | ✅ | ✅ | ✅ | ✅ | ✅ |
 | "It's a total problem of horizons" | ✅ | ❌ Chinglish → `broadened my horizons` | ✅ | ✅ | ✅ |
 
 **Result**: Band Score **6.0 / 9.0**
 
 ---
 
-## 📊 Metrics
-
-> ⚠️ **Disclaimer**: Based on limited operational data (20+ sessions, April 2026).
-
-| Metric | Target | Actual | Sample |
-|--------|--------|--------|--------|
-| Band Error | ≤0.3 | **0.2** | 20+ |
-| Format Accuracy | ≥98% | **98%+** | Weekly |
-
----
-
-## 🚀 Quick Start
-
-### 1. Clone the repo
-
-```bash
-git clone https://github.com/KaichenCurry/ielts-speaking-ai.git
-cd ielts-speaking-ai
-```
-
-### 2. Install dependencies
-
-```bash
-pip install -r requirements.txt
-```
-
-### 3. Configure environment
-
-```bash
-cp .env.example .env
-# Edit .env with your tokens
-```
-
-```bash
-# Required tokens:
-TELEGRAM_BOT_TOKEN=your_bot_token      # From @BotFather
-MINIMAX_API_KEY=your_api_key          # Via OpenClaw gateway
-NOTION_TOKEN=your_notion_token         # From notion.so/my-integrations
-NOTION_QUESTION_DB_ID=your_db_id      # Question bank database ID
-NOTION_HOMEWORK_DB_ID=your_db_id      # Homework archive database ID
-NOTION_BADCASE_DB_ID=your_db_id       # Error cases database ID
-```
-
-### 4. Run
-
-```bash
-# Initialize session
-python3 scripts/ielts_flow.py init '{"test_number": 7, "Part 1": ["Q1", "Q2"], "Part 2 题卡": "Describe a shopping mall", "Part 3": ["Q1", "Q2"]}'
-
-# Process student audio (auto transcript + scoring)
-python3 scripts/ielts_flow.py process /path/to/audio.wav
-```
-
----
-
-## 📁 Project Structure
+## 📁 Structure
 
 ```
-ielts-speaking-ai/
-│
-├── 📄 README.md                # 🇨🇳 Chinese version (default)
-├── 📄 README_en.md              # 🇺🇸 English version (this file)
-│
-├── 🔧 Core Scripts
-│   ├── ielts_flow.py          # ⭐ Main controller (Whisper+MiniMax+RAG)
-│   ├── answer_flow.py          # ⭐ State machine (Part1→2→3)
-│   ├── analyze_transcript.py   # ⭐ AI scoring analysis
-│   └── rag_retrieve.py         # ⭐ RAG retrieval
-│
-├── 📱 Platform Integration
-│   ├── notion_search.py         # Notion question bank
-│   ├── notion_append_homework.py # Homework archive
-│   └── notion_append_badcase.py  # Error cases
-│
-├── 🔄 Automation
-│   ├── topic_updater.py         # Auto question bank update
-│   ├── weekly_report.py          # Weekly report generation
-│   └── evaluate_weekly.py        # Weekly evaluation
-│
-└── 📚 Documentation
-    ├── docs/SYSTEM_DESIGN.md    # Detailed technical docs
-    └── docs/PORTFOLIO_RESUME.md # Resume & portfolio
+┌─────────────────────────────────────────────────────────────────────┐
+│                       Project Structure                              │
+├─────────────────────────────────────────────────────────────────────┤
+│                                                                      │
+│  📄 README.md              ← Chinese version (default)               │
+│  📄 README_en.md           ← English version (this file)              │
+│  📄 LICENSE                ← MIT License                              │
+│  📄 .env.example           ← Environment template                   │
+│  📄 requirements.txt        ← Python dependencies                   │
+│                                                                      │
+│  ┌─────────────────────────────────────────────────────────────┐   │
+│  │  📁 scripts/                 Core Scripts                   │   │
+│  ├─────────────────────────────────────────────────────────────┤   │
+│  │  ⭐ ielts_flow.py           Main controller                │   │
+│  │  ⭐ answer_flow.py           State machine (Part1→2→3)   │   │
+│  │  ⭐ analyze_transcript.py   AI scoring                    │   │
+│  │  ⭐ rag_retrieve.py         RAG retrieval                  │   │
+│  │  📱 notion_*.py             Notion integration              │   │
+│  │  🔄 weekly_report.py         Weekly report                  │   │
+│  └─────────────────────────────────────────────────────────────┘   │
+│                                                                      │
+│  ┌─────────────────────────────────────────────────────────────┐   │
+│  │  📁 docs/                    Documentation                   │   │
+│  ├─────────────────────────────────────────────────────────────┤   │
+│  │  📋 SYSTEM_DESIGN.md        Technical docs                 │   │
+│  │  📋 PORTFOLIO_RESUME.md     Resume & Portfolio             │   │
+│  └─────────────────────────────────────────────────────────────┘   │
+│                                                                      │
+└─────────────────────────────────────────────────────────────────────┘
 ```
 
 ---
 
 ## 🗺️ Roadmap
 
-### Current Version ✅
-```
-┌─────────────────────────────────────────────────────┐
-│                   Current: v1.0                      │
-├─────────────────────────────────────────────────────┤
-│                                                      │
-│  📱 Telegram Bot                                     │
-│  🤖 OpenClaw Agent (MiniMax + Whisper)              │
-│  📋 Notion Integration                              │
-│                                                      │
-│  ✅ Voice practice                                   │
-│  ✅ AI auto-scoring                                 │
-│  ✅ Sentence-by-sentence feedback                     │
-│  ✅ Notion archival                                 │
-│  ✅ Weekly reports                                   │
-│  ✅ 66 question bank                                │
-│                                                      │
-└─────────────────────────────────────────────────────┘
+### Current ✅ v1.0
+
+```mermaid
+gantt
+    title Current Version v1.0 (Completed)
+    dateFormat  YYYY-MM
+    section v1.0
+    ✅ Telegram Bot          :2026-04-01, 2026-04-15
+    ✅ OpenClaw Agent       :2026-04-01, 2026-04-15
+    ✅ Notion Integration    :2026-04-01, 2026-04-15
+    ✅ Voice Practice        :2026-04-01, 2026-04-15
+    ✅ AI Auto-Scoring      :2026-04-01, 2026-04-15
+    ✅ Sentence Feedback    :2026-04-01, 2026-04-15
+    ✅ Weekly Reports       :2026-04-01, 2026-04-15
 ```
 
-### Future Versions 🔜
+### Future 🔜
 
-```
-┌─────────────────────────────────────────────────────┐
-│                   Roadmap                            │
-├─────────────────────────────────────────────────────┤
-│                                                      │
-│  v1.1 (Q2 2026)                                     │
-│  ├── 🔜 WeChat Mini Program integration              │
-│  ├── 🔜 Feishu/Lark Bot integration                 │
-│  └── 🔜 Enterprise WeChat integration               │
-│                                                      │
-│  v1.2 (Q3 2026)                                    │
-│  ├── 🔜 Hermes Agent (OpenClaw's next-gen)          │
-│  ├── 🔜 Multi-agent orchestration                   │
-│  └── 🔜 Advanced RAG with vector search             │
-│                                                      │
-│  v2.0 (Q4 2026)                                    │
-│  ├── 🔜 Feishu Docs integration                     │
-│  ├── 🔜 Tencent Docs integration                    │
-│  ├── 🔜 Fine-tuning with accumulated data          │
-│  └── 🔜 Student progress dashboard                  │
-│                                                      │
-└─────────────────────────────────────────────────────┘
-```
-
-### Why Expand to WeChat/Feishu?
-
-| Platform | Advantage for This Project |
-|---------|---------------------------|
-| 💬 **WeChat** | 1.2B+ users, dominant in China, students already have it |
-| 📱 **Feishu/Lark** | Great for corporate/education, built-in calendar |
-| 🏢 **Enterprise WeChat** | For language schools with existing WeCom infrastructure |
-| 📄 **Feishu/Tencent Docs** | Replace Notion for teams already using these tools |
+| Version | Timeline | Features | Status |
+|---------|----------|----------|--------|
+| **v1.1** | 2026 Q2 | WeChat Mini Program | 🔜 |
+| | | Feishu/Lark Bot | 🔜 |
+| | | Enterprise WeChat | 🔜 |
+| **v1.2** | 2026 Q3 | Hermes Agent | 🔜 |
+| | | Multi-Agent | 🔜 |
+| | | Vector RAG | 🔜 |
+| **v2.0** | 2026 Q4 | Feishu Docs | 🔜 |
+| | | Tencent Docs | 🔜 |
+| | | Model Fine-tuning | 🔜 |
+| | | Student Dashboard | 🔜 |
 
 ---
 
-## 🔄 Data Flywheel
+## 🚀 Quick Start
 
-```
-Student Practice → AI Scoring → Teacher Correction → Error Cases → RAG Enhancement → Fine-tuning
+### 1. Clone
+```bash
+git clone https://github.com/KaichenCurry/ielts-speaking-ai.git
+cd ielts-speaking-ai
 ```
 
-Every teacher correction is high-quality labeled data.
-When error cases reach 100+, model fine-tuning becomes possible.
+### 2. Install
+```bash
+pip install -r requirements.txt
+```
+
+### 3. Configure
+```bash
+cp .env.example .env
+# Edit .env with your tokens
+```
+
+### 4. Run
+```bash
+python3 scripts/ielts_flow.py init '{"test_number": 7}'
+python3 scripts/ielts_flow.py process /path/to/audio.wav
+```
+
+---
+
+## 📊 Metrics
+
+> ⚠️ **Disclaimer**: Based on limited data (20+ sessions, April 2026).
+
+| Metric | Target | Actual |
+|--------|--------|--------|
+| Band Error | ≤0.3 | **0.2** |
+| Format Accuracy | ≥98% | **98%+** |
 
 ---
 
 ## 👤 Author
 
-**Curry Chen**  
-IELTS Speaking Teacher / AI Product Explorer
-
-| Platform | Link |
-|----------|------|
-| 🌐 GitHub | [@KaichenCurry](https://github.com/KaichenCurry) |
-| 📂 Project | https://github.com/KaichenCurry/ielts-speaking-ai |
+**Curry Chen** | [GitHub](https://github.com/KaichenCurry) | [Project](https://github.com/KaichenCurry/ielts-speaking-ai)
 
 ---
 
 ## 📜 License
 
-MIT License - see [LICENSE](LICENSE) file for details.
+[MIT License](LICENSE)
 
 ---
 
