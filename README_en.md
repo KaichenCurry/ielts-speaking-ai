@@ -1,12 +1,12 @@
 # ielts-speaking-ai
 
-> 🎓 面向雅思口语教师的 AI 助教系统 —— 让老师专注于教学，从重复性评分工作中解放。
+> 🎓 AI Teaching Assistant for IELTS Speaking — Free teachers from repetitive grading, let them focus on real teaching.
 
 [![GitHub stars](https://img.shields.io/github/stars/KaichenCurry/ielts-speaking-ai?style=flat-square)](https://github.com/KaichenCurry/ielts-speaking-ai/stargazers)
 [![MIT License](https://img.shields.io/badge/License-MIT-green?style=flat-square)](LICENSE)
 [![Python 3.8+](https://img.shields.io/badge/Python-3.8+-blue?style=flat-square)](https://www.python.org/)
 
-**English** | [中文介绍](#中文介绍)
+🌐 **Language**: 🇬🇧 **English** | 🇨🇳 [中文介绍](README_zh.md)
 
 ---
 
@@ -232,12 +232,9 @@ python3 scripts/ielts_flow.py process /path/to/audio.wav
 
 ```
 ielts-speaking-ai/
-├── README.md                   # This file
-├── SKILL.md                    # System design document
-│
-├── docs/
-│   ├── SYSTEM_DESIGN.md       # Detailed technical docs
-│   └── PORTFOLIO_RESUME.md    # Resume & portfolio content
+├── README_en.md              # 🇬🇧 English version (primary)
+├── README_zh.md              # 🇨🇳 中文介绍
+├── SKILL.md                  # System design document
 │
 ├── scripts/
 │   ├── ielts_flow.py         # ⭐ Main controller (Whisper+MiniMax+RAG)
@@ -280,38 +277,9 @@ IELTS Speaking Teacher / AI Product Explorer
 
 ---
 
-## 🇨🇳 中文介绍
+## 🇨🇳 Chinese Version
 
-### 雅思口语 AI 助教系统
-
-面向雅思口语教师的 AI 辅助教学工具，帮助老师：
-
-- ✅ **一键布置作业**：66 套真题，随时调用
-- ✅ **AI 自动评测**：Whisper + MiniMax + RAG，逐句多维度反馈
-- ✅ **Notion 存档**：学生数据永久留存
-- ✅ **周报推送**：每周五自动推送班级全景报告
-- ✅ **题库更新**：每周三、六定时自动更新
-
-### 技术亮点
-
-- 多模型协同（Whisper + MiniMax + RAG）
-- 三段式状态机（Part 1→Part 2→Part 3）
-- Band 评分误差 ≤0.3
-- 数据飞轮设计，持续自我进化
-
-### 为什么选择 MiniMax？
-
-MiniMax 通过 OpenClaw 网关 API 集成，具备以下优势：
-- **原生中文理解**：对雅思口语评分场景优化
-- **成本效益**：相比 GPT-4 等更具性价比
-- **OpenClaw 集成**：与 Whisper、Notion 等无缝协作
-
-### 为什么选择 Whisper？
-
-OpenAI 的 Whisper 是当前语音识别领域的最先进模型：
-- **开源**：可本地运行，无 API 费用
-- **准确性高**：在多个基准测试中表现最佳
-- **多语言支持**：适合处理各种口音的英语
+For Chinese introduction, please see: **[README_zh.md](README_zh.md)**
 
 ---
 
