@@ -12,41 +12,63 @@
 
 ---
 
-## One-Sentence Intro
+## What It Is
 
 An AI grading tool for **IELTS speaking teachers**.
 
-Teacher sends one command, student practices with voice, system auto-grades with sentence-by-sentence feedback, archived to Notion.
+Teacher sends one command → Student practices with voice → System auto-grades with sentence-by-sentence feedback → Archives to Notion → Pushes weekly reports.
+
+---
+
+## Core Flow
+
+```mermaid
+flowchart TD
+    subgraph Teacher["👨‍🏫 Teacher"]
+        A["Send command /题目 Test 07"]
+    end
+
+    subgraph Student["🎓 Student"]
+        B["Receive questions"]
+        C["Voice practice"]
+        D["Get sentence feedback"]
+    end
+
+    subgraph AISystem["🤖 AI System"]
+        E["Whisper STT"]
+        F["RAG historical errors"]
+        G["MiniMax 5-dimension scoring"]
+        H["Band Score calculation"]
+    end
+
+    subgraph Data["📋 Data Layer"]
+        I["Notion archive"]
+        J["Error cases"]
+    end
+
+    A -->|"One command"| B
+    C -->|"Voice"| E
+    E --> F --> G --> H
+    H -->|"Sentence feedback"| D
+    H --> I
+    I -.-> J
+
+    style Teacher fill:#e3f2fd
+    style Student fill:#f3e5f5
+    style AISystem fill:#fff8e1
+    style Data fill:#e8f5e9
+```
 
 ---
 
 ## Problem Solved
 
-| Before | After |
-|--------|-------|
+| Before (Teacher) | After (AI) |
+|-----------------|------------|
 | Manual grading, 3 hours per assignment | AI auto-grades, 0 seconds |
-| Students wait a day for feedback | Instant feedback after practice |
+| Student waits a day for feedback | Instant after practice |
 | Data scattered in WeChat/email | Auto-archived to Notion |
-
----
-
-## How It Works (3 Steps)
-
-```
-Step 1: Teacher sends command
-        ↓
-Command: /题目 Test 07
-
-Step 2: Student practices
-        ↓
-🎤 Voice answer → AI auto-grades
-
-Step 3: Feedback received
-        ↓
-💬 Sentence feedback (Grammar/Vocabulary/Tense/Logic/Ideas)
-📊 Band Score
-📋 Auto-archive to Notion
-```
+| Manual class progress tracking | Auto Friday weekly report |
 
 ---
 
@@ -54,11 +76,79 @@ Step 3: Feedback received
 
 | Metric | Value |
 |--------|-------|
-| Teacher time saved | 80%+ |
-| Band score error | 0.2 |
-| Format accuracy | 98%+ |
+| Teacher time saved | **80%+** |
+| Band score error | **0.2** |
+| Format accuracy | **98%+** |
 
 > Based on April 2026 data (20+ sessions)
+
+---
+
+## 5 Key Features
+
+### 1️⃣ One-Click Assignment
+Teacher sends `/题目 Test 07` → System auto-sends Part 1/2/3. 66 real exam questions ready.
+
+### 2️⃣ AI Auto-Grading
+```
+Voice → Whisper → RAG → MiniMax → Score
+```
+MiniMax outputs 5-dimension feedback: Grammar / Vocabulary / Tense / Logic / Ideas
+
+### 3️⃣ Instant Sentence Feedback
+
+| Dimension | Focus | Example |
+|-----------|-------|---------|
+| Grammar | Subject-verb, clauses | "He go" → "He goes" |
+| Vocabulary | Chinglish, synonyms | "很贵" → "expensive" |
+| Tense | Past/present/perfect | Past events in present tense |
+| Logic | Causality, transitions | Example doesn't match point |
+| Ideas | Examples, depth | Examples too general |
+
+### 4️⃣ Notion Auto-Archive
+
+Every student practice permanently stored:
+- Original transcript
+- Band Score
+- Sentence feedback
+- Teacher corrections
+
+📎 [Question Bank](https://www.notion.so/bba82871-4fe1-4409-9f70-72f6bf27e7b3) | 📎 [Homework](https://www.notion.so/3412e55d-7136-8179-9ac8-ee60a420ac21) | 📎 [Error Cases](https://www.notion.so/3412e55d-7136-8113-aa98-cfd36af9799c)
+
+### 5️⃣ Weekly Auto-Reports
+
+Every Friday 18:00 → Auto-push to Telegram:
+
+```
+📊 Class Weekly Report
+
+Sessions: 12 | Avg Band: 6.2 | +0.3 vs last week
+
+Band Distribution: 7.0+ (3) | 6.0-6.5 (6) | 5.5-6.0 (2)
+
+Common Errors TOP3:
+1. Tense mixing —— 8 times
+2. Subject-verb disagreement —— 6 times
+3. Example mismatch —— 5 times
+```
+
+---
+
+## Real Example
+
+**Student Answer**:
+> "Definitely, yes, reading has been my hobby since I was a child and I've been a catering story books for fun, but now I'm preparing for my studies abroad and shifted to reading academic articles and biographies of influential figures. It's a total problem of horizons and improve my vocabulary."
+
+**AI Feedback**:
+
+| Original | Diagnosis | Suggestion |
+|----------|-----------|------------|
+| "reading has been my hobby since I was a child" | ✅ Tense correct | — |
+| "I've been a catering story books for fun" | ❌ Vocabulary: `catering` → `reading` | → reading story books for fun |
+| "shifted to reading academic articles" | ✅ Vocabulary accurate | — |
+| "It's a total problem of horizons" | ❌ Chinglish | → It's really broadened my horizons |
+
+**Band Score**: 6.0 / 9.0
 
 ---
 
@@ -66,48 +156,28 @@ Step 3: Feedback received
 
 | Component | Technology | Why |
 |-----------|------------|-----|
-| Message entry | Telegram | Native voice support |
-| AI inference | MiniMax (OpenClaw) | Great Chinese understanding |
-| Speech-to-text | Whisper | Best for spoken English |
-| Data storage | Notion | Teachers use it directly |
-
-```
-Voice → Whisper → MiniMax → Score → Notion
-```
+| Message entry | Telegram | Native voice support, no barrier for students |
+| AI inference | MiniMax (via OpenClaw) | Great Chinese understanding, low cost |
+| Speech-to-text | Whisper (OpenAI) | Best for spoken English, open source |
+| Data storage | Notion | Teachers use directly, no backend needed |
 
 ---
 
-## 5 Key Features
+## Band Score Formula
 
-### 1️⃣ Assign Homework
-One command sends Part 1/2/3, 66 exam questions ready
+```
+Overall Band = Part1×30% + (Part2×40% + Part3×60%)×70%
+```
 
-### 2️⃣ AI Auto-Grading
-5-dimension feedback: Grammar / Vocabulary / Tense / Logic / Ideas
+**Example**:
+```
+Part1 avg: 6.0
+Part2 score: 6.5
+Part3 avg: 6.0
 
-### 3️⃣ Instant Feedback
-Results immediately after practice, no waiting
-
-### 4️⃣ Notion Archive
-Student history permanently stored, always accessible
-
-### 5️⃣ Weekly Reports
-Auto-push class overview every Friday
-
----
-
-## Real Example
-
-**Student Answer**:
-> "I've been a catering story books for fun... It's a total problem of horizons"
-
-**AI Feedback**:
-| Issue | Diagnosis |
-|-------|-----------|
-| "catering story books" | Vocabulary error → "reading story books" |
-| "total problem of horizons" | Chinglish → "broadened my horizons" |
-
-**Band Score**: 6.0 / 9.0
+Part2_3 blend = 6.5×0.4 + 6.0×0.6 = 6.2
+Overall Band = 6.0×0.3 + 6.2×0.7 = 6.14 ≈ 6.0
+```
 
 ---
 
@@ -117,12 +187,16 @@ Auto-push class overview every Friday
 ielts-speaking-ai/
 ├── scripts/                    # Core code
 │   ├── ielts_flow.py         # Main controller
-│   ├── answer_flow.py         # State machine
+│   ├── answer_flow.py         # State machine (Part1→2→3)
 │   ├── analyze_transcript.py # AI scoring
-│   └── rag_retrieve.py       # RAG retrieval
+│   ├── rag_retrieve.py       # RAG retrieval
+│   └── notion_append_*.py    # Notion archive
+│
 ├── docs/
 │   ├── SYSTEM_DESIGN.md      # Technical docs
-│   └── PORTFOLIO_RESUME.md   # Resume content
+│   ├── PORTFOLIO_RESUME.md   # Resume content
+│   └── INTERVIEW_PREP.md    # Interview prep
+│
 └── references/
     └── prompts.md            # Prompt templates
 ```
@@ -141,7 +215,7 @@ pip install -r requirements.txt
 
 # 3. Configure
 cp .env.example .env
-# Fill in your tokens
+# Edit .env with your tokens
 
 # 4. Run
 python3 scripts/ielts_flow.py init '{"test_number": 7}'
@@ -154,21 +228,31 @@ python3 scripts/ielts_flow.py process /path/to/audio.wav
 
 | Timeline | Features |
 |----------|----------|
-| 2026 Q2 | WeChat, Feishu, Enterprise WeChat |
-| 2026 Q3 | Hermes Agent, Multi-agent |
-| 2026 Q4 | Model fine-tuning, Student dashboard |
+| 2026 Q2 | WeChat / Feishu / Enterprise WeChat |
+| 2026 Q3 | Hermes Agent / Multi-agent / Vector RAG |
+| 2026 Q4 | Model fine-tuning / Student dashboard |
 
 ---
 
-## Links
+## Resume Bullet Points
 
-- GitHub：https://github.com/KaichenCurry/ielts-speaking-ai
-- Question Bank：https://www.notion.so/bba82871-4fe1-4409-9f70-72f6bf27e7b3
-- Homework：https://www.notion.so/3412e55d-7136-8179-9ac8-ee60a420ac21
-- Error Cases：https://www.notion.so/3412e55d-7136-8113-aa98-cfd36af9799c
+```
+【Product Design】Designed and launched IELTS Speaking AI Assistant from 0→1,
+integrating Telegram + Whisper + MiniMax + Notion,
+automating homework, grading, archive, and weekly reports,
+solving teacher pain points, 80%+ efficiency improvement.
+
+【AI Engineering】Designed multi-model architecture (Whisper + RAG + MiniMax)
++ 3-stage async state machine with 5-dimension feedback,
+Band error reduced from 0.5 to 0.2, format accuracy 98%+.
+
+【Data-Driven】Built AI evaluation metrics (Band error, dimension accuracy),
+weekly sampling evaluation for Prompt optimization, 2 iterations,
+designed data flywheel (practice→correction→error cases→RAG→fine-tuning).
+```
 
 ---
 
-**Curry Chen** | [GitHub](https://github.com/KaichenCurry)
+**Curry Chen** | [GitHub](https://github.com/KaichenCurry) | [Project](https://github.com/KaichenCurry/ielts-speaking-ai)
 
 <p align="center"><strong>⭐ Star this project!</strong></p>
