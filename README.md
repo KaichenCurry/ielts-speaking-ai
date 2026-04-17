@@ -293,8 +293,8 @@ python3 scripts/ielts_flow.py process /path/to/audio.wav
 ```
 ielts-speaking-ai/
 │
-├── 📄 README.md                # 英文版（主）
-├── 📄 README_zh.md             # 中文介绍（本文件）
+├── 📄 README.md                # 🇨🇳 中文版（默认显示）
+├── 📄 README_en.md             # 🇺🇸 English version
 │
 ├── 🔧 核心脚本
 │   ├── ielts_flow.py          # ⭐ 主流程控制器
