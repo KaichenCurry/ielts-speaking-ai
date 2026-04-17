@@ -8,405 +8,404 @@
 [![Python 3.8+](https://img.shields.io/badge/Python-3.8+-blue?style=flat-square)](https://www.python.org/)
 [![Last Commit](https://img.shields.io/github/last-commit/KaichenCurry/ielts-speaking-ai?style=flat-square)](https://github.com/KaichenCurry/ielts-speaking-ai/commits)
 
-🌐 **Language**: [🇬🇧 English](README_zh.md) | 🇨🇳 [中文介绍](README_zh.md)
+🌐 **Language**: [🇬🇧 English](README.md) | 🇨🇳 **中文介绍**
 
 ---
 
-## 📋 Table of Contents
+## 📋 目录
 
-- [🎯 What is this?](#-what-is-this)
-- [😤 The Problem](#-the-problem)
-- [💡 Our Solution](#-our-solution)
-- [🏗️ Tech Stack](#️-tech-stack)
-- [✨ Features](#-features)
-- [📖 Demo](#-demo)
-- [🚀 Quick Start](#-quick-start)
-- [📁 Project Structure](#-project-structure)
-- [🗺️ Roadmap](#️-roadmap)
-- [👤 Author](#-author)
+- [🎯 这是什么？](#-这是什么)
+- [😤 痛点问题](#-痛点问题)
+- [💡 我们的解决方案](#-我们的解决方案)
+- [🏗️ 技术栈](#️-技术栈)
+- [✨ 核心功能](#-核心功能)
+- [📖 真实 Demo](#-真实-demo)
+- [🚀 快速开始](#-快速开始)
+- [📁 项目结构](#-项目结构)
+- [🗺️ 未来路线图](#️-未来路线图)
+- [👤 作者](#-作者)
 
 ---
 
-## 🎯 What is this?
+## 🎯 这是什么？
 
-An **AI-powered IELTS speaking practice & evaluation system** designed for IELTS speaking teachers.
+一个专为**雅思口语教师**设计的 AI 驱动口语练习与评测系统。
 
 ```
-Teacher types:  /题目 Test 07
+老师发送：  /题目 Test 07
         ↓
-System sends Part 1/2/3 questions
+系统自动发送 Part 1/2/3 全部题目
         ↓
-Student records voice answers at home
+学生在家语音答题
         ↓
-AI auto-scores → Instant sentence-by-sentence feedback
+AI 自动评分 → 即时逐句反馈
         ↓
-Data archived to Notion + Weekly report every Friday
+数据存档 Notion + 每周五推送周报
 ```
 
-**Target User: IELTS Speaking Teachers**
+**目标用户：雅思口语教师**
 
 ---
 
-## 😤 The Problem
+## 😤 痛点问题
 
-| Pain Point | Reality | Impact |
-|-----------|---------|--------|
-| 🔴 Repetitive grading | Manually scoring every homework | Hours spent on grading, not teaching |
-| 🔴 Delayed feedback | Students wait a day for results | Miss the optimal learning window |
-| 🔴 Scattered data | Student progress hard to track | Can't build systematic archives |
-| 🔴 No class overview | Manual statistics are time-consuming | Difficult to adjust teaching strategies |
+| 痛点 | 现状 | 影响 |
+|------|------|------|
+| 🔴 重复性评分工作 | 每次作业都要手动批改 | 花数小时评分，而非教学设计 |
+| 🔴 反馈严重滞后 | 学生次日甚至更久才收到反馈 | 错失最佳记忆窗口 |
+| 🔴 数据散落丢失 | 学生记录难以追踪 | 无法形成系统化教学档案 |
+| 🔴 班级进度黑盒 | 手动统计费时费力 | 难以针对性调整教学策略 |
 
 ---
 
-## 💡 Our Solution
+## 💡 我们的解决方案
 
-### Before vs After
+### 前后对比
 
 ```
 ┌─────────────────────────────────────────────────────────────────┐
-│                        BEFORE (Manual)                          │
+│                        之前（纯人工）                             │
 ├─────────────────────────────────────────────────────────────────┤
 │                                                                  │
-│  Teacher: "Grade 20 homeworks"                                  │
+│  老师："批改 20 份作业"                                          │
 │       ↓                                                          │
-│  ⏱️ 3 hours of repetitive scoring                               │
+│  ⏱️ 3 小时的重复性评分工作                                        │
 │       ↓                                                          │
-│  Student: "When will I get feedback?"                            │
+│  学生："什么时候能收到反馈？"                                      │
 │       ↓                                                          │
-│  📝 Paper scattered, no data, no tracking                        │
+│  📝 纸质散落，无数据，无追踪                                       │
 │                                                                  │
 └─────────────────────────────────────────────────────────────────┘
 
                               ↓ ielts-speaking-ai ↓
 
 ┌─────────────────────────────────────────────────────────────────┐
-│                        AFTER (AI-Powered)                       │
+│                        之后（AI 驱动）                            │
 ├─────────────────────────────────────────────────────────────────┤
 │                                                                  │
-│  Teacher: "/题目 Test 07"  ← one command                      │
+│  老师："/题目 Test 07"  ← 一条指令                               │
 │       ↓                                                          │
-│  ✅ System sends questions automatically                         │
+│  ✅ 系统自动发送题目                                               │
 │       ↓                                                          │
-│  Student: records voice → gets instant feedback                 │
+│  学生：语音答题 → 立即收到反馈                                    │
 │       ↓                                                          │
-│  📊 Notion archived + Friday weekly report                      │
+│  📊 Notion 存档 + 周五自动推送周报                                │
 │       ↓                                                          │
-│  Teacher: Focus on real teaching intervention                   │
+│  老师：专注于真正的教学干预                                       │
 │                                                                  │
 └─────────────────────────────────────────────────────────────────┘
 ```
 
 ---
 
-## 🏗️ Tech Stack
+## 🏗️ 技术栈
 
-> **Why these three? Together they form the perfect AI teaching assistant.**
+> **为什么选择这三者？它们共同构成了完美的 AI 助教组合。**
 
 ```
 ┌─────────────────────────────────────────────────────────────────┐
 │                                                                  │
-│   📱 Telegram          +   🤖 OpenClaw          +   📋 Notion  │
+│   📱 Telegram          +   🤖 OpenClaw          +   📋 Notion   │
 │   ──────────────           ─────────────           ───────────  │
 │                                                                  │
-│   🌐 Instant Message      🧠 AI Agent Core      📊 Data Storage  │
-│   Native voice support   Multi-model fusion    Structured docs  │
-│   Multi-platform        Native Chinese         Scalable archive  │
-│   Low barrier           Mature platform        Teacher-friendly  │
+│   🌐 即时通讯              🧠 AI Agent 核心        📊 数据存储    │
+│   原生语音支持             多模型融合              结构化文档      │
+│   跨平台支持               原生中文理解             可扩展存档      │
+│   低门槛                  成熟平台                教师友好        │
 │                                                                  │
 │   ┌─────────────────────────────────────────────────────────┐   │
-│   │  🎤 Voice → 📝 Whisper → 🧠 MiniMax → 📊 Band Score  │   │
-│   │              ↑ OpenClaw Agent orchestration ↑           │   │
+│   │  🎤 语音 → 📝 Whisper → 🧠 MiniMax → 📊 Band 评分   │   │
+│   │              ↑ OpenClaw Agent 编排 ↑                   │   │
 │   └─────────────────────────────────────────────────────────┘   │
 │                                                                  │
 └─────────────────────────────────────────────────────────────────┘
 ```
 
-### Why Telegram?
+### 为什么要用 Telegram？
 
-| Advantage | Explanation |
-|-----------|-------------|
-| 🌐 Native voice support | Telegram supports voice messages natively, perfect for speaking practice |
-| 🌍 Multi-language | Built-in translation, great for international students |
-| 📱 Cross-platform | iOS/Android/Desktop, students can practice anywhere |
-| 🔔 Instant notifications | Students get questions immediately |
-| 📊 Group features | Built-in group reports, weekly summaries |
+| 优势 | 说明 |
+|------|------|
+| 🌐 原生语音支持 | Telegram 原生支持语音消息，完美适配口语练习 |
+| 🌍 多语言环境 | 内置翻译功能，国际学生也能用 |
+| 📱 跨平台 | iOS/Android/Desktop，学生随时随地练习 |
+| 🔔 即时通知 | 学生立即收到题目 |
+| 📊 群组功能 | 内置群报告，周报推送 |
 
-### Why OpenClaw?
+### 为什么要用 OpenClaw？
 
-| Advantage | Explanation |
-|-----------|-------------|
-| 🧠 Mature AI Agent | Native Whisper + MiniMax + RAG integration |
-| 🔄 Workflow automation | State machine for Part 1→2→3 flow |
-| 🌐 Chinese-native | Excellent Chinese context understanding |
-| 💰 Cost-effective | Compared to GPT-4, better for education scenarios |
+| 优势 | 说明 |
+|------|------|
+| 🧠 成熟的 AI Agent | 原生集成 Whisper + MiniMax + RAG |
+| 🔄 工作流自动化 | Part 1→2→3 状态机自动编排 |
+| 🌐 中文原生 | 优秀的中文语境理解能力 |
+| 💰 成本效益 | 相比 GPT-4，更适合教育场景 |
 
-### Why Notion?
+### 为什么要用 Notion？
 
-| Advantage | Explanation |
-|-----------|-------------|
-| 📊 Structured data | Question bank, homework archive, error cases |
-| 📝 Teacher-friendly | No-code database, easy for non-tech teachers |
-| 🔗 API integration | Auto-archive homework, searchable |
-| 📈 Progress tracking | Student growth over time |
+| 优势 | 说明 |
+|------|------|
+| 📊 结构化数据 | 题库、作业存档、错题本 |
+| 📝 教师友好 | 无代码数据库，非技术老师也能用 |
+| 🔗 API 集成 | 自动存档作业，可搜索 |
+| 📈 进度追踪 | 学生成长轨迹可视化 |
 
 ---
 
-## ✨ Features
+## ✨ 核心功能
 
-### 1️⃣ One-Click Assignment
+### 1️⃣ 一键布置作业
 ```
 /题目 Test 07
 
-✅ Part 1 sent (5 questions)
-✅ Part 2 sent (Cue Card)
-✅ Part 3 sent (5 questions)
+✅ Part 1 已发送（5题）
+✅ Part 2 已发送（Cue Card）
+✅ Part 3 已发送（5题）
 ```
-66 real exam questions, ready to use.
+66 套真题，随时调用。
 
-### 2️⃣ AI Auto-Scoring
+### 2️⃣ AI 自动评测
 
-| Component | Technology | Function |
-|-----------|------------|----------|
-| 🎤 Speech-to-Text | **Whisper** (OpenAI) | Voice → Text |
-| 📚 Context | **RAG** | Historical errors enhance scoring |
-| 🧠 Scoring | **MiniMax** (via OpenClaw) | 5-dimension evaluation |
-| 📊 Band Calc | **Formula** | Part1×30% + (Part2×40%+Part3×60%)×70% |
+| 环节 | 技术选型 | 功能 |
+|------|---------|------|
+| 🎤 语音转文字 | **Whisper** (OpenAI) | 语音 → 文字 |
+| 📚 上下文增强 | **RAG** | 历史错题提升评分准确性 |
+| 🧠 评分推理 | **MiniMax** (通过 OpenClaw) | 5 维度精细化评分 |
+| 📊 Band 计算 | **公式** | Part1×30% + (Part2×40%+Part3×60%)×70% |
 
-### 3️⃣ 5-Dimension Feedback
+### 3️⃣ 5 维度逐句反馈
 
-| Dimension | Focus | Example Issue |
-|-----------|-------|--------------|
-| 📝 Grammar | Subject-verb, clauses | "He go" → "He goes" |
-| 📖 Vocabulary | Chinglish, synonyms | "很贵" → "expensive" |
-| ⏰ Tense | Past/present/perfect | Past events in present tense |
-| 🔗 Logic | Causality, transitions |观点与举例不匹配 |
-| 💡 Ideas | Examples, depth | 举例泛泛而谈 |
+| 维度 | 关注点 | 示例问题 |
+|------|--------|---------|
+| 📝 语法 | 主谓一致、从句、介词 | "He go" → "He goes" |
+| 📖 词汇 | Chinglish、高分替换 | "很贵" → "expensive" |
+| ⏰ 时态 | 过去/现在/完成时 | 过去经历用现在时 |
+| 🔗 逻辑 | 因果、转折、跑题 | 观点与举例不匹配 |
+| 💡 思路 | 举例、深度、观点 | 举例泛泛而谈 |
 
-### 4️⃣ Notion Integration
+### 4️⃣ Notion 数据存档
 
-📎 **Databases**:
-- [Question Bank](https://www.notion.so/bba82871-4fe1-4409-9f70-72f6bf27e7b3) - 66 exam sets
-- [Homework Archive](https://www.notion.so/3412e55d-7136-8179-9ac8-ee60a420ac21) - Practice records
-- [Error Cases](https://www.notion.so/3412e55d-7136-8113-aa98-cfd36af9799c) - Historical mistakes
+📎 **数据库链接**：
+- [题库](https://www.notion.so/bba82871-4fe1-4409-9f70-72f6bf27e7b3) - 66 套真题
+- [作业反馈库](https://www.notion.so/3412e55d-7136-8179-9ac8-ee60a420ac21) - 练习存档
+- [错题本](https://www.notion.so/3412e55d-7136-8113-aa98-cfd36af9799c) - 错误案例
 
-### 5️⃣ Weekly Reports
+### 5️⃣ 周报自动推送
 
-Every Friday 18:00 → Auto-push to Telegram
+每周五 18:00 自动推送到 Telegram 群
 
 ```
-📊 Weekly Report | Apr 11-15
+📊 周报 | 2026.04.11-04.15
 
-【Practice Overview】
-• Sessions: 12
-• Average Band: 6.2
-• Change: +0.3 ↑
+【练习概览】
+• 练习人次：12
+• 平均 Band：6.2
+• 较上周变化：+0.3 ↑
 
-【Band Distribution】
-• 7.0+: 3 students ████
-• 6.0-6.5: 6 students ████████████
-• 5.5-6.0: 2 students ████
+【Band 分布】
+• 7.0+：3人 ████
+• 6.0-6.5：6人 ████████████
+• 5.5-6.0：2人 ████
 
-【Common Errors TOP 5】
-1. Tense mixing — 8 times
-2. Subject-verb — 6 times
+【常见错误 TOP5】
+1. 时态混用 —— 8次
+2. 主谓不一致 —— 6次
 ```
 
 ---
 
-## 📖 Demo
+## 📖 真实 Demo
 
-### Student Answer → AI Feedback
+### 学生答题 → AI 反馈
 
-**Original transcript**:
+**原音转写**：
 > "Definitely, yes, reading has been my hobby since I was a child and I've been a catering story books for fun, but now I'm preparing for my studies abroad and shifted to reading academic articles..."
 
-**AI Sentence-by-Sentence Feedback**:
+**AI 逐句反馈**：
 
-| Sentence | Grammar | Vocabulary | Tense | Logic | Ideas |
-|----------|---------|------------|-------|-------|-------|
+| 原句 | 语法 | 词汇 | 时态 | 逻辑 | 思路 |
+|------|------|------|------|------|------|
 | "reading has been my hobby since I was a child" | ✅ | ✅ | ✅ | ✅ | ✅ |
 | "I've been a catering story books" | ✅ | ❌ `catering` → `reading` | ✅ | ✅ | ✅ |
 | "shifted to reading academic articles" | ✅ | ✅ | ✅ | ✅ | ✅ |
 | "It's a total problem of horizons" | ✅ | ❌ Chinglish → `broadened my horizons` | ✅ | ✅ | ✅ |
 
-**Result**: Band Score **6.0 / 9.0**
+**评分结果**：Band Score **6.0 / 9.0**
 
 ---
 
-## 📊 Metrics
+## 📊 效果指标
 
-> ⚠️ **Disclaimer**: Based on limited operational data (20+ sessions, April 2026).
+> ⚠️ **可信度说明**：基于 2026-04 运营数据（20+ 次练习），仅供参考。
 
-| Metric | Target | Actual | Sample |
-|--------|--------|--------|--------|
-| Band Error | ≤0.3 | **0.2** | 20+ |
-| Format Accuracy | ≥98% | **98%+** | Weekly |
+| 指标 | 目标 | 实际 | 样本量 |
+|------|------|------|--------|
+| Band 评分误差 | ≤0.3 | **0.2** | 20+ 次 |
+| 格式正确率 | ≥98% | **98%+** | 每周抽样 |
 
 ---
 
-## 🚀 Quick Start
+## 🚀 快速开始
 
-### 1. Clone the repo
+### 1. 克隆项目
 
 ```bash
 git clone https://github.com/KaichenCurry/ielts-speaking-ai.git
 cd ielts-speaking-ai
 ```
 
-### 2. Install dependencies
+### 2. 安装依赖
 
 ```bash
 pip install -r requirements.txt
 ```
 
-### 3. Configure environment
+### 3. 配置环境变量
 
 ```bash
 cp .env.example .env
-# Edit .env with your tokens
+# 编辑 .env 填写实际 Token
 ```
 
 ```bash
-# Required tokens:
-TELEGRAM_BOT_TOKEN=your_bot_token      # From @BotFather
-MINIMAX_API_KEY=your_api_key          # Via OpenClaw gateway
-NOTION_TOKEN=your_notion_token         # From notion.so/my-integrations
-NOTION_QUESTION_DB_ID=your_db_id      # Question bank database ID
-NOTION_HOMEWORK_DB_ID=your_db_id      # Homework archive database ID
-NOTION_BADCASE_DB_ID=your_db_id       # Error cases database ID
+# 必需的 Token：
+TELEGRAM_BOT_TOKEN=your_bot_token      # 找 @BotFather 申请
+MINIMAX_API_KEY=your_api_key          # 通过 OpenClaw 网关
+NOTION_TOKEN=your_notion_token         # 从 notion.so/my-integrations
+NOTION_QUESTION_DB_ID=your_db_id      # 题库数据库 ID
+NOTION_HOMEWORK_DB_ID=your_db_id       # 作业反馈库 ID
+NOTION_BADCASE_DB_ID=your_db_id       # 错题本 ID
 ```
 
-### 4. Run
+### 4. 运行
 
 ```bash
-# Initialize session
+# 初始化会话
 python3 scripts/ielts_flow.py init '{"test_number": 7, "Part 1": ["Q1", "Q2"], "Part 2 题卡": "Describe a shopping mall", "Part 3": ["Q1", "Q2"]}'
 
-# Process student audio (auto transcript + scoring)
+# 处理学生音频（自动转写+评分）
 python3 scripts/ielts_flow.py process /path/to/audio.wav
 ```
 
 ---
 
-## 📁 Project Structure
+## 📁 项目结构
 
 ```
 ielts-speaking-ai/
 │
-├── 📄 README.md                # This file
-├── 📄 README_zh.md             # 中文介绍
+├── 📄 README.md                # 英文版（主）
+├── 📄 README_zh.md             # 中文介绍（本文件）
 │
-├── 🔧 Core Scripts
-│   ├── ielts_flow.py          # ⭐ Main controller (Whisper+MiniMax+RAG)
-│   ├── answer_flow.py          # ⭐ State machine (Part1→2→3)
-│   ├── analyze_transcript.py   # ⭐ AI scoring analysis
-│   └── rag_retrieve.py         # ⭐ RAG retrieval
+├── 🔧 核心脚本
+│   ├── ielts_flow.py          # ⭐ 主流程控制器
+│   ├── answer_flow.py          # ⭐ 状态机（Part1→2→3）
+│   ├── analyze_transcript.py   # ⭐ AI 评分分析
+│   └── rag_retrieve.py         # ⭐ RAG 检索
 │
-├── 📱 Platform Integration
-│   ├── notion_search.py         # Notion question bank
-│   ├── notion_append_homework.py # Homework archive
-│   └── notion_append_badcase.py  # Error cases
+├── 📱 平台集成
+│   ├── notion_search.py         # Notion 题库
+│   ├── notion_append_homework.py # 作业存档
+│   └── notion_append_badcase.py  # 错题本
 │
-├── 🔄 Automation
-│   ├── topic_updater.py         # Auto question bank update
-│   ├── weekly_report.py          # Weekly report generation
-│   └── evaluate_weekly.py        # Weekly evaluation
+├── 🔄 自动化
+│   ├── topic_updater.py         # 题库自动更新
+│   ├── weekly_report.py          # 周报生成
+│   └── evaluate_weekly.py        # 每周评估
 │
-└── 📚 Documentation
-    ├── docs/SYSTEM_DESIGN.md    # Detailed technical docs
-    └── docs/PORTFOLIO_RESUME.md # Resume & portfolio
+└── 📚 文档
+    ├── docs/SYSTEM_DESIGN.md    # 详细技术文档
+    └── docs/PORTFOLIO_RESUME.md # 简历 & 作品集
 ```
 
 ---
 
-## 🗺️ Roadmap
+## 🗺️ 未来路线图
 
-### Current Version ✅
+### 当前版本 ✅
 ```
 ┌─────────────────────────────────────────────────────┐
-│                   Current: v1.0                      │
+│                   当前版本: v1.0                    │
 ├─────────────────────────────────────────────────────┤
 │                                                      │
 │  📱 Telegram Bot                                     │
 │  🤖 OpenClaw Agent (MiniMax + Whisper)              │
 │  📋 Notion Integration                              │
 │                                                      │
-│  ✅ Voice practice                                   │
-│  ✅ AI auto-scoring                                 │
-│  ✅ Sentence-by-sentence feedback                     │
-│  ✅ Notion archival                                 │
-│  ✅ Weekly reports                                   │
-│  ✅ 66 question bank                                │
+│  ✅ 语音练习                                         │
+│  ✅ AI 自动评分                                      │
+│  ✅ 逐句多维度反馈                                   │
+│  ✅ Notion 数据存档                                  │
+│  ✅ 周报自动推送                                     │
+│  ✅ 66 套真题题库                                   │
 │                                                      │
 └─────────────────────────────────────────────────────┘
 ```
 
-### Future Versions 🔜
+### 未来版本 🔜
 
 ```
 ┌─────────────────────────────────────────────────────┐
-│                   Roadmap                            │
+│                   未来路线图                         │
 ├─────────────────────────────────────────────────────┤
 │                                                      │
-│  v1.1 (Q2 2026)                                     │
-│  ├── 🔜 WeChat Mini Program integration              │
-│  ├── 🔜 Feishu/Lark Bot integration                 │
-│  └── 🔜 Enterprise WeChat integration               │
+│  v1.1 (2026 Q2)                                    │
+│  ├── 🔜 微信小程序集成                               │
+│  ├── 🔜 飞书/Lark Bot 集成                          │
+│  └── 🔜 企业微信集成                                 │
 │                                                      │
-│  v1.2 (Q3 2026)                                    │
-│  ├── 🔜 Hermes Agent (OpenClaw's next-gen)          │
-│  ├── 🔜 Multi-agent orchestration                   │
-│  └── 🔜 Advanced RAG with vector search             │
+│  v1.2 (2026 Q3)                                    │
+│  ├── 🔜 Hermes Agent (OpenClaw 下一代)              │
+│  ├── 🔜 多 Agent 编排                               │
+│  └── 🔜 向量检索升级 RAG                            │
 │                                                      │
-│  v2.0 (Q4 2026)                                    │
-│  ├── 🔜 Feishu Docs integration                     │
-│  ├── 🔜 Tencent Docs integration                    │
-│  ├── 🔜 Fine-tuning with accumulated data          │
-│  └── 🔜 Student progress dashboard                  │
+│  v2.0 (2026 Q4)                                    │
+│  ├── 🔜 飞书文档集成                                 │
+│  ├── 🔜 腾讯文档集成                                 │
+│  ├── 🔜 基于积累数据的模型微调                       │
+│  └── 🔜 学生进度可视化面板                          │
 │                                                      │
 └─────────────────────────────────────────────────────┘
 ```
 
-### Why Expand to WeChat/Feishu?
+### 为什么要扩展到微信/飞书？
 
-| Platform | Advantage for This Project |
-|---------|---------------------------|
-| 💬 **WeChat** | 1.2B+ users, dominant in China, students already have it |
-| 📱 **Feishu/Lark** | Great for corporate/education, built-in calendar |
-| 🏢 **Enterprise WeChat** | For language schools with existing WeCom infrastructure |
-| 📄 **Feishu/Tencent Docs** | Replace Notion for teams already using these tools |
-
----
-
-## 🔄 Data Flywheel
-
-```
-Student Practice → AI Scoring → Teacher Correction → Error Cases → RAG Enhancement → Fine-tuning
-```
-
-Every teacher correction is high-quality labeled data.
-When error cases reach 100+, model fine-tuning becomes possible.
+| 平台 | 对本项目的优势 |
+|------|--------------|
+| 💬 **微信** | 12 亿+ 用户，国内绝对主导，学生已有微信 |
+| 📱 **飞书/Lark** | 企业/教育场景优秀，内置日历和协作 |
+| 🏢 **企业微信** | 已有企业微信的语言学校可直接接入 |
+| 📄 **飞书/腾讯文档** | 已用这些工具的团队可直接替换 Notion |
 
 ---
 
-## 👤 Author
+## 🔄 数据飞轮
+
+```
+学生答题 → AI评分 → 老师纠正 → 错题本收录 → RAG增强 → 微调数据
+```
+
+每一次老师纠正都是高质量标注数据。当错题本积累到 100+ 条后，可启动模型微调。
+
+---
+
+## 👤 作者
 
 **Curry Chen**  
-IELTS Speaking Teacher / AI Product Explorer
+雅思口语教师 / AI 产品探索者
 
-| Platform | Link |
-|----------|------|
+| 平台 | 链接 |
+|------|------|
 | 🌐 GitHub | [@KaichenCurry](https://github.com/KaichenCurry) |
-| 📂 Project | https://github.com/KaichenCurry/ielts-speaking-ai |
+| 📂 项目 | https://github.com/KaichenCurry/ielts-speaking-ai |
 
 ---
 
 ## 📜 License
 
-MIT License - see [LICENSE](LICENSE) file for details.
+MIT License - 详见 [LICENSE](LICENSE) 文件。
 
 ---
 
 <p align="center">
-  <strong>⭐ Star this project if you find it helpful!</strong>
+  <strong>⭐ 如果这个项目对你有帮助，请点个 Star！</strong>
 </p>
