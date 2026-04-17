@@ -226,33 +226,38 @@ python3 scripts/ielts_flow.py process /path/to/audio.wav
 
 ## Roadmap
 
-| Timeline | Features |
-|----------|----------|
-| 2026 Q2 | WeChat / Feishu / Enterprise WeChat |
-| 2026 Q3 | Hermes Agent / Multi-agent / Vector RAG |
-| 2026 Q4 | Model fine-tuning / Student dashboard |
-
----
-
-## Resume Bullet Points
-
 ```
-【Product Design】Designed and launched IELTS Speaking AI Assistant from 0→1,
-integrating Telegram + Whisper + MiniMax + Notion,
-automating homework, grading, archive, and weekly reports,
-solving teacher pain points, 80%+ efficiency improvement.
+Now (v1.0) ─────────────────────────────────────────────────────────
 
-【AI Engineering】Designed multi-model architecture (Whisper + RAG + MiniMax)
-+ 3-stage async state machine with 5-dimension feedback,
-Band error reduced from 0.5 to 0.2, format accuracy 98%+.
+    └── WeChat / Feishu / Enterprise WeChat
+            │
+            ▼
+    v1.1 (2026 Q2) ───────────────────────────────────────────────
 
-【Data-Driven】Built AI evaluation metrics (Band error, dimension accuracy),
-weekly sampling evaluation for Prompt optimization, 2 iterations,
-designed data flywheel (practice→correction→error cases→RAG→fine-tuning).
+            └── Hermes Agent / Multi-agent / Vector RAG
+                        │
+                        ▼
+                v1.2 (2026 Q3) ────────────────────────────────────
+
+                            └── Model fine-tuning / Student dashboard / Feishu Docs
+                                    │
+                                    ▼
+                            v2.0 (2026 Q4) ──────────────────────
 ```
 
 ---
 
-**Curry Chen** | [GitHub](https://github.com/KaichenCurry) | [Project](https://github.com/KaichenCurry/ielts-speaking-ai)
+## Links
+
+| Resource | Link |
+|----------|------|
+| GitHub | https://github.com/KaichenCurry/ielts-speaking-ai |
+| Question Bank | https://www.notion.so/bba82871-4fe1-4409-9f70-72f6bf27e7b3 |
+| Homework | https://www.notion.so/3412e55d-7136-8179-9ac8-ee60a420ac21 |
+| Error Cases | https://www.notion.so/3412e55d-7136-8113-aa98-cfd36af9799c |
+
+---
+
+**Curry Chen** | [GitHub](https://github.com/KaichenCurry)
 
 <p align="center"><strong>⭐ Star this project!</strong></p>

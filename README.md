@@ -226,32 +226,38 @@ python3 scripts/ielts_flow.py process /path/to/audio.wav
 
 ## 未来路线图
 
-| 时间 | 功能 |
+```
+现在 (v1.0) ─────────────────────────────────────────────────────────
+
+    └── 微信/飞书/企业微信接入
+            │
+            ▼
+    v1.1 (2026 Q2) ───────────────────────────────────────────────
+
+            └── Hermes Agent / 多模型编排 / 向量 RAG
+                        │
+                        ▼
+                v1.2 (2026 Q3) ────────────────────────────────────
+
+                            └── 模型微调 / 学生进度面板 / 飞书文档
+                                    │
+                                    ▼
+                            v2.0 (2026 Q4) ──────────────────────
+```
+
+---
+
+## 链接
+
+| 资源 | 链接 |
 |------|------|
-| 2026 Q2 | 微信 / 飞书 / 企业微信接入 |
-| 2026 Q3 | Hermes Agent / 多模型编排 / 向量 RAG |
-| 2026 Q4 | 模型微调 / 学生进度面板 |
+| GitHub | https://github.com/KaichenCurry/ielts-speaking-ai |
+| 题库 | https://www.notion.so/bba82871-4fe1-4409-9f70-72f6bf27e7b3 |
+| 作业库 | https://www.notion.so/3412e55d-7136-8179-9ac8-ee60a420ac21 |
+| 错题本 | https://www.notion.so/3412e55d-7136-8113-aa98-cfd36af9799c |
 
 ---
 
-## 简历 Bullet Points
-
-```
-【产品设计】主导从 0 到 1 设计并落地雅思口语 AI 助教系统，
-串联 Telegram + Whisper + MiniMax + Notion，
-实现作业布置、评分、存档、周报全自动，解决教师重复性评分痛点，效率提升 80%+。
-
-【AI 工程】设计多模型协同架构（Whisper + RAG + MiniMax）+
-三段式异步状态机，逐句 5 维度反馈，
-Band 评分误差从 0.5 收窄至 0.2，格式正确率 98%+。
-
-【数据驱动】建立 AI 评测指标体系（Band 误差、维度准确率），
-通过周级评估持续优化 Prompt，迭代 2 轮后评分质量显著提升，
-并设计数据飞轮（答题→纠正→错题本→RAG→微调）。
-```
-
----
-
-**Curry Chen** | [GitHub](https://github.com/KaichenCurry) | [项目链接](https://github.com/KaichenCurry/ielts-speaking-ai)
+**Curry Chen** | [GitHub](https://github.com/KaichenCurry)
 
 <p align="center"><strong>⭐ Star 这个项目！</strong></p>
