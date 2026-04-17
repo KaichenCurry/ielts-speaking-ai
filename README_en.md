@@ -3,10 +3,10 @@
 
 > 让老师专注于教学，从重复性评分工作中解放。
 
-[![GitHub stars](https://img.shields.io/github/stars/KaichenCurry/ielts-speaking-ai?style=flat-square&label=⭐ Stars)](https://github.com/KaichenCurry/ielts-speaking-ai/stargazers)
-[![MIT License](https://img.shields.io/badge/License-MIT-green?style=flat-square&label=📄 MIT License)](LICENSE)
-[![Python](https://img.shields.io/badge/Python-3.8+-blue?style=flat-square&label=🐍 Python)](https://www.python.org/)
-[![Last Commit](https://img.shields.io/github/last-commit/KaichenCurry/ielts-speaking-ai?style=flat-square&label=📅 Last Commit)](https://github.com/KaichenCurry/ielts-speaking-ai/commits)
+[![Stars](https://img.shields.io/github/stars/KaichenCurry/ielts-speaking-ai?style=flat-square)](https://github.com/KaichenCurry/ielts-speaking-ai/stargazers)
+[![License](https://img.shields.io/badge/License-MIT-green?style=flat-square)](LICENSE)
+[![Python](https://img.shields.io/badge/Python-3.8+-blue?style=flat-square)](https://www.python.org/)
+[![Last Commit](https://img.shields.io/github/last-commit/KaichenCurry/ielts-speaking-ai?style=flat-square)](https://github.com/KaichenCurry/ielts-speaking-ai/commits)
 
 🌐 **Language**: 🇺🇸 **English** | [🇨🇳 中文介绍](README.md)
 
