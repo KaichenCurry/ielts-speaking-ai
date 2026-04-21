@@ -27,22 +27,20 @@
 
 ```mermaid
 flowchart TB
-    subgraph Framework["🤖 OpenClaw Agent Framework"]
-        direction TB
-        
+    subgraph OpenClaw["🤖 OpenClaw Agent Framework"]
         subgraph Skills["📦 Skills 层"]
             direction LR
-            S1["📝 ielts-speaking<br/>主流程"]
-            S2["⚙️ ielts-admin<br/>系统管理"]
-            S3["🧠 ielts-memory<br/>记忆管理"]
-            S4["📊 ielts-weekly-report<br/>智能周报"]
+            S1["📝 ielts-speaking"]
+            S2["⚙️ ielts-admin"]
+            S3["🧠 ielts-memory"]
+            S4["📊 ielts-weekly-report"]
         end
         
         subgraph Services["🔌 外部服务"]
             direction LR
             TGB["📱 Telegram Bot"]
             NT["📋 Notion"]
-            AI["🤖 GPT-4o-mini"]
+            AI["🤖 AI 推理"]
         end
         
         Skills --> Services
@@ -51,10 +49,12 @@ flowchart TB
     Teacher["👨‍🏫 老师"] <--> TGB
     Student["👨‍🎓 学生"] <--> TGB
     
-    style Framework fill:#e3f2fd,stroke:#1976d2
+    style OpenClaw fill:#e3f2fd,stroke:#1976d2
     style Skills fill:#fff8e1,stroke:#f9a825
     style Services fill:#e8f5e9,stroke:#388e3c
 ```
+
+**AI 推理引擎**：MiniMax M2.7 + GPT-4o-mini
 
 ---
 
