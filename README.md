@@ -287,6 +287,56 @@ ielts-speaking-ai/
 
 ---
 
+## 🚀 未来迭代计划
+
+```mermaid
+flowchart LR
+    subgraph Now["📌 v1.0 当前"]
+        T1["📱 Telegram Bot"]
+        N1["📋 Notion"]
+        O1["🤖 OpenClaw"]
+    end
+    
+    subgraph Plan["📌 v1.1 规划"]
+        T2["📱 微信 Bot"]
+        T3["📱 飞书 Bot"]
+        T4["📱 企业微信"]
+    end
+    
+    subgraph Future["📌 v2.0 规划"]
+        H["🔮 Hermes Agent"]
+        DB1["📄 腾讯文档"]
+        DB2["📄 Obsidian"]
+        DB3["📄 飞书文档"]
+    end
+    
+    Now --> Plan --> Future
+    
+    style Now fill:#e8f5e9,stroke:#388e3c
+    style Plan fill:#fff8e1,stroke:#f9a825
+    style Future fill:#e3f2fd,stroke:#1976d2
+```
+
+### v1.1 多平台接入
+
+| 平台 | 状态 | 说明 |
+|------|------|------|
+| 📱 微信 | 🔜 规划中 | 微信小程序/公众号 |
+| 📱 飞书 | 🔜 规划中 | 飞书 Bot |
+| 📱 企业微信 | 🔜 规划中 | 企业微信机器人 |
+| 📱 Telegram | ✅ 已完成 | 当前主力平台 |
+
+### v2.0 Agent + 多数据源
+
+| 升级 | 说明 |
+|------|------|
+| 🔮 Hermes Agent | OpenClaw 演进版，更强的多模态 Agent |
+| 📄 腾讯文档 | 作业文档自动同步 |
+| 📄 Obsidian | 本地知识库集成 |
+| 📄 飞书文档 | 飞书生态深度集成 |
+
+---
+
 ## 🔗 相关链接
 
 | 资源 | 地址 |
