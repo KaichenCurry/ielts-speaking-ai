@@ -261,9 +261,10 @@ Bot 应该发送 Part 1/2/3 题目。
 
 | 资源 | 链接 |
 |------|------|
-| GitHub Issues | [提交问题](https://github.com/KaichenCurry/ielts-speaking-ai/issues) |
-| 项目文档 | [SYSTEM_DESIGN.md](./SYSTEM_DESIGN.md) |
-| 更新日志 | [GitHub Releases](https://github.com/KaichenCurry/ielts-speaking-ai/releases) |
+| 📧 邮箱 | currykchen@hotmail.com |
+| 🐛 GitHub Issues | [提交问题](https://github.com/KaichenCurry/ielts-speaking-ai/issues) |
+| 📖 项目文档 | [SYSTEM_DESIGN.md](./SYSTEM_DESIGN.md) |
+| 📝 更新日志 | [GitHub Releases](https://github.com/KaichenCurry/ielts-speaking-ai/releases) |
 
 ---
 
