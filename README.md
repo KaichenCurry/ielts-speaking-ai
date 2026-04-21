@@ -9,7 +9,7 @@
 
 **雅思口语 AI 助教系统 — 帮老师自动评分，让学生即时收到反馈**
 
-[English](./README_en.md) · [项目文档](./docs/SYSTEM_DESIGN.md)
+[English](./README_en.md) · [安装指南](./docs/INSTALLATION_GUIDE.md) · [项目文档](./docs/SYSTEM_DESIGN.md)
 
 </div>
 
