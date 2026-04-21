@@ -25,68 +25,42 @@
 
 ## 🏗️ 系统架构
 
-基于 **OpenClaw Agent Framework** 构建，采用 4 Skill 分层架构：
-
-```
-┌─────────────────────────────────────────────────────────────┐
-│                     OpenClaw Agent Framework                  │
-├─────────────────────────────────────────────────────────────┤
-│                                                              │
-│  ┌─────────────────┐  ┌─────────────────┐  ┌────────────┐ │
-│  │ ielts-speaking  │  │ ielts-admin     │  │ielts-memory│ │
-│  │ (主流程 Skill) │  │ (系统管理 Skill)│  │ (记忆管理) │ │
-│  │                 │  │                 │  │            │ │
-│  │ • Part 1/2/3   │  │ • 健康监控      │  │ • MEMORY.md│ │
-│  │ • Whisper 评分  │  │ • Cron 任务     │  │ • 每日日志 │ │
-│  │ • Notion 写入   │  │ • 问题排查      │  │ • 决策追踪 │ │
-│  └─────────────────┘  └─────────────────┘  └────────────┘ │
-│                                                              │
-│  ┌─────────────────────────────────────────────────────┐  │
-│  │        ielts-weekly-report (智能周报 Skill)           │  │
-│  │                                                       │  │
-│  │   历史数据 + 本周表现 → 成长导向报告 → Telegram     │  │
-│  └─────────────────────────────────────────────────────┘  │
-│                                                              │
-└─────────────────────────────────────────────────────────────┘
-           │                    │                    │
-           ▼                    ▼                    ▼
-    ┌─────────────┐      ┌─────────────┐      ┌─────────────┐
-    │  Telegram   │      │   Notion    │      │  GPT-4o-mini │
-    │   Bot       │      │   数据库    │      │   API        │
-    └─────────────┘      └─────────────┘      └─────────────┘
-```
-
----
-
-## ⚡ 快速开始
-
-### 1. 安装 OpenClaw
-
-```bash
-npm install -g openclaw
-```
-
-### 2. 配置 Skills
-
-```bash
-# 克隆项目
-git clone https://github.com/KaichenCurry/ielts-speaking-ai.git
-cd ielts-speaking-ai
-
-# 配置环境变量
-cp .env.example .env
-# 编辑 .env 填入 Token
-```
-
-### 3. 启用 Skills
-
-```bash
-openclaw skills list
-# 确认以下 Skills 状态为 ✅ ready:
-# • ielts-speaking    - 主流程（答题、评分、Notion）
-# • ielts-admin       - 系统管理（监控、Cron）
-# • ielts-memory      - 记忆管理
-# • ielts-weekly-report - 智能周报
+```mermaid
+flowchart TB
+    subgraph OpenClaw["🤖 OpenClaw Agent Framework"]
+        direction TB
+        
+        subgraph Skills["📦 Skills 层"]
+            direction LR
+            S1["📝 ielts-speaking<br/>主流程"]
+            S2["⚙️ ielts-admin<br/>系统管理"]
+            S3["🧠 ielts-memory<br/>记忆管理"]
+            S4["📊 ielts-weekly-report<br/>智能周报"]
+        end
+        
+        Skills <-->|"协作"| Admin["⚙️"]
+    end
+    
+    subgraph External["🔌 外部服务"]
+        direction LR
+        TG["📱 Telegram Bot<br/>@Claw_aispeaking_bot"]
+        NT["📋 Notion<br/>数据库"]
+        AI["🤖 GPT-4o-mini<br/>AI 评分"]
+    end
+    
+    Skills -->|"消息/评分"| TG
+    Skills -->|"存档"| NT
+    Skills -->|"推理"| AI
+    
+    TG <-->|"语音/反馈"| Students["👨‍🎓 学生"]
+    TG <-->|"指令"| Teacher["👨‍🏫 老师"]
+    
+    style OpenClaw fill:#e3f2fd,stroke:#1976d2
+    style Skills fill:#fff8e1,stroke:#f9a825
+    style External fill:#e8f5e9,stroke:#388e3c
+    style TG fill:#f3e5f5,stroke:#7b1fa2
+    style NT fill:#e8f5e9,stroke:#388e3c
+    style AI fill:#fff8e1,stroke:#f9a825
 ```
 
 ---
@@ -95,46 +69,75 @@ openclaw skills list
 
 ### 答题流程（ielts-speaking）
 
+```mermaid
+flowchart TD
+    Start(["👨‍🏫 老师发送<br/>/题目 Test XX"]) --> Q1["📤 系统发送<br/>Part 1 题目"]
+    
+    Q1 --> P1Loop{"Part 1 循环<br/>5题"}
+    
+    P1Loop -->|"学生语音"| WH1["🎤 Whisper<br/>转写"]
+    WH1 -->|"暂存评分"| Score1["📝 AI 评分<br/>暂存内存"]
+    Score1 -->|"追问下一题"| P1Loop
+    
+    P1Loop --->|"5题完成"| Q2["📤 系统发送<br/>Part 2 题目"]
+    
+    Q2 --> P2["🎤 学生语音答题<br/>Part 2"]
+    P2 --> WH2["📝 Whisper 转写"]
+    WH2 --> Score2["📝 AI 评分<br/>暂存内存"]
+    Score2 --> Q3["📤 系统发送<br/>Part 3 题目"]
+    
+    Q3 --> P3Loop{"Part 3 循环<br/>5题"}
+    
+    P3Loop -->|"学生语音"| WH3["🎤 Whisper<br/>转写"]
+    WH3 -->|"暂存评分"| Score3["📝 AI 评分<br/>暂存内存"]
+    Score3 -->|"追问下一题"| P3Loop
+    
+    P3Loop --->|"5题完成"| Done["✅ 答题结束"]
+    
+    Done --> Report["📊 汇总评分"]
+    Report --> Notion["💾 写入 Notion"]
+    Report --> TG["📱 Telegram<br/>发送报告"]
+    
+    style Start fill:#e3f2fd
+    style P1Loop fill:#fff8e1
+    style P3Loop fill:#fff8e1
+    style Done fill:#e8f5e9
+    style Report fill:#fff8e1
+    style Notion fill:#e8f5e9
+    style TG fill:#f3e5f5
 ```
-老师发送 /题目 Test XX
-         │
-         ▼
-┌─────────────────────────────────────────────────────────┐
-│  Part 1（5题循环）                                      │
-│  学生语音 → Whisper 转写 → AI 评分暂存 → 追问下一题   │
-│  ⚠️ 答题过程中不显示任何反馈                           │
-└─────────────────────────────────────────────────────────┘
-         │
-         ▼
-┌─────────────────────────────────────────────────────────┐
-│  Part 2（1题）                                        │
-│  学生语音 → Whisper 转写 → AI 评分暂存 → 不显示      │
-└─────────────────────────────────────────────────────────┘
-         │
-         ▼
-┌─────────────────────────────────────────────────────────┐
-│  Part 3（5题循环）                                    │
-│  学生语音 → Whisper 转写 → AI 评分暂存 → 追问下一题  │
-└─────────────────────────────────────────────────────────┘
-         │
-         ▼
-┌─────────────────────────────────────────────────────────┐
-│  汇总评分 → 写入 Notion → 发送到 Telegram 群组         │
-└─────────────────────────────────────────────────────────┘
-```
+
+**⚠️ 重要规则**：答题过程中不显示任何反馈，全部答完才输出评分！
+
+---
 
 ### 智能周报流程（ielts-weekly-report）
 
-```
-每周五 18:00 EDT 自动触发
-         │
-         ▼
-┌─────────────────────────────────────────────────────────┐
-│  Step 1: memory_search 检索历史表现                   │
-│  Step 2: Notion API 获取本周作业数据                   │
-│  Step 3: AI 综合分析生成成长报告                       │
-│  Step 4: Telegram Bot 发送到群组                       │
-└─────────────────────────────────────────────────────────┘
+```mermaid
+flowchart LR
+    subgraph Schedule["⏰ 定时触发"]
+        cron["📅 每周五 18:00 EDT<br/>Cron Job"]
+    end
+    
+    cron --> Step1["🔍 memory_search<br/>检索历史表现"]
+    
+    Step1 --> Step2["📥 Notion API<br/>获取本周作业"]
+    
+    Step2 --> Step3["🤖 AI 分析<br/>生成成长报告"]
+    
+    Step3 --> Step4["📱 Telegram Bot<br/>发送到群组"]
+    
+    Step4 --> End["✅ 报告已推送"]
+    
+    Step1 -.->|"历史数据"| Step3
+    Step2 -.->|"本周数据"| Step3
+    
+    style Schedule fill:#e3f2fd
+    style Step1 fill:#fff8e1
+    style Step2 fill:#fff8e1
+    style Step3 fill:#fff8e1
+    style Step4 fill:#f3e5f5
+    style End fill:#e8f5e9
 ```
 
 ---
@@ -232,10 +235,26 @@ Notion 存档包含：题目、原文、逐句分析（Band 5.5）。
 
 ## 📐 Band 计算公式
 
+```mermaid
+flowchart LR
+    P1["Part 1"] -->|"×0.4"| S1["部分和"]
+    P2["Part 2"] -->|"×0.4"| S1
+    P3["Part 3"] -->|"×0.6"| S1
+    
+    S1 -->|"×0.7"| Combined["综合 Band"]
+    P1 -->|"×0.3"| Combined
+    
+    style P1 fill:#e3f2fd
+    style P2 fill:#e3f2fd
+    style P3 fill:#e3f2fd
+    style S1 fill:#fff8e1
+    style Combined fill:#e8f5e9
+```
+
+**公式**：
 ```
 Part2_3合成 = Part2×0.4 + Part3×0.6
 Overall = Part1×0.3 + Part2_3合成×0.7
-
 即：Part1×30% + Part2×28% + Part3×42%
 ```
 
