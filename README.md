@@ -27,7 +27,7 @@
 
 ```mermaid
 flowchart TB
-    subgraph OpenClaw["🤖 OpenClaw Agent Framework"]
+    subgraph Framework["🤖 OpenClaw Agent Framework"]
         direction TB
         
         subgraph Skills["📦 Skills 层"]
@@ -38,29 +38,22 @@ flowchart TB
             S4["📊 ielts-weekly-report<br/>智能周报"]
         end
         
-        Skills <-->|"协作"| Admin["⚙️"]
+        subgraph Services["🔌 外部服务"]
+            direction LR
+            TGB["📱 Telegram Bot"]
+            NT["📋 Notion"]
+            AI["🤖 GPT-4o-mini"]
+        end
+        
+        Skills --> Services
     end
+
+    Teacher["👨‍🏫 老师"] <--> TGB
+    Student["👨‍🎓 学生"] <--> TGB
     
-    subgraph External["🔌 外部服务"]
-        direction LR
-        TG["📱 Telegram Bot<br/>@Claw_aispeaking_bot"]
-        NT["📋 Notion<br/>数据库"]
-        AI["🤖 GPT-4o-mini<br/>AI 评分"]
-    end
-    
-    Skills -->|"消息/评分"| TG
-    Skills -->|"存档"| NT
-    Skills -->|"推理"| AI
-    
-    TG <-->|"语音/反馈"| Students["👨‍🎓 学生"]
-    TG <-->|"指令"| Teacher["👨‍🏫 老师"]
-    
-    style OpenClaw fill:#e3f2fd,stroke:#1976d2
+    style Framework fill:#e3f2fd,stroke:#1976d2
     style Skills fill:#fff8e1,stroke:#f9a825
-    style External fill:#e8f5e9,stroke:#388e3c
-    style TG fill:#f3e5f5,stroke:#7b1fa2
-    style NT fill:#e8f5e9,stroke:#388e3c
-    style AI fill:#fff8e1,stroke:#f9a825
+    style Services fill:#e8f5e9,stroke:#388e3c
 ```
 
 ---
@@ -115,11 +108,7 @@ flowchart TD
 
 ```mermaid
 flowchart LR
-    subgraph Schedule["⏰ 定时触发"]
-        cron["📅 每周五 18:00 EDT<br/>Cron Job"]
-    end
-    
-    cron --> Step1["🔍 memory_search<br/>检索历史表现"]
+    Schedule["⏰ 每周五 18:00 EDT"] --> Step1["🔍 memory_search<br/>检索历史表现"]
     
     Step1 --> Step2["📥 Notion API<br/>获取本周作业"]
     
@@ -235,26 +224,9 @@ Notion 存档包含：题目、原文、逐句分析（Band 5.5）。
 
 ## 📐 Band 计算公式
 
-```mermaid
-flowchart LR
-    P1["Part 1"] -->|"×0.4"| S1["部分和"]
-    P2["Part 2"] -->|"×0.4"| S1
-    P3["Part 3"] -->|"×0.6"| S1
-    
-    S1 -->|"×0.7"| Combined["综合 Band"]
-    P1 -->|"×0.3"| Combined
-    
-    style P1 fill:#e3f2fd
-    style P2 fill:#e3f2fd
-    style P3 fill:#e3f2fd
-    style S1 fill:#fff8e1
-    style Combined fill:#e8f5e9
 ```
+综合 Band = Part1×30% + (Part2×40% + Part3×60%)×70%
 
-**公式**：
-```
-Part2_3合成 = Part2×0.4 + Part3×0.6
-Overall = Part1×0.3 + Part2_3合成×0.7
 即：Part1×30% + Part2×28% + Part3×42%
 ```
 
